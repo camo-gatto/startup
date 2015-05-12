@@ -1,7 +1,7 @@
 {
     "mongo": {
-        "dbpath": "/Users/nicoladesimone/Documents/dev/startup/db/data",
-        "mongodpath":"/Users/nicoladesimone/Documents/dev/mongodb-osx-x86_64-2.6.7/bin"
+        "dbpath": "../db/data",
+        "mongodpath":"../db/mongodb/bin"
     }
     
 }
