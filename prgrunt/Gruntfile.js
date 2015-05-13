@@ -18,13 +18,20 @@ module.exports = function(grunt) {
                     var command = cnf.mongo.mongodpath + '/mongod --dbpath ' + cnf.mongo.dbpath;
                     return command;
                 }
+            },
+            startServer: {
+                command: function() {
+                    var cnf = grunt.file.readJSON('package.json');
+                    return "node " + cnf.main;
+                }
             }
         }
     });
 
     // A very basic default task. viene eseguito lanciando da terminale: grunt
     grunt.registerTask('default', 'Log some stuff.', function() {
-        grunt.log.write('Logging some stuff...').ok();
+        grunt.log.write('Exec node main ').ok();
+        grunt.task.run('shell:startServer');
     });
     
     //viene eseguito lanciando da terminale: grunt default2

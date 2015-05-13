@@ -15,3 +15,5 @@ creare progetto node (npm init)
 installare grunt e aggiungerlo alle dep
 
 sudo npm istall --save grunt  
+
+Node.js Authentication Strategy: passport.js o everyauth
