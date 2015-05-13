@@ -1,3 +1,4 @@
 prgrunt/node_modules
 db/data
 db/mongodb
+frontend/bower_components
