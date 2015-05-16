@@ -13,5 +13,10 @@
     "grunt": "^0.4.5",
     "grunt-shell": "^1.1.2",
     "socket.io": "^1.3.5"
+  },
+  "devDependencies": {
+    "mubsub": "^1.0.4",
+    "socket.io-adapter-mongo": "^0.1.4",
+    "sticky-session": "^0.1.0"
   }
 }

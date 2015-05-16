@@ -19,10 +19,23 @@ module.exports = function(grunt) {
                     return command;
                 }
             },
+            mongoClient: {
+                command: function() {
+                    var cnf = grunt.file.readJSON('conf.json');
+                    var command = cnf.mongo.mongodpath + '/mongo';
+                    return command;
+                }
+            },
             startServer: {
                 command: function() {
                     var cnf = grunt.file.readJSON('package.json');
                     return "node " + cnf.main;
+                }
+            },
+            nodeCluster: {
+                command: function() {
+                    var cnf = grunt.file.readJSON('package.json');
+                    return "NODE_DEBUG=cluster node " + cnf.main;
                 }
             }
         }

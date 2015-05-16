@@ -12,14 +12,21 @@
       #messages li { padding: 5px 10px; }
       #messages li:nth-child(odd) { background: #eee; }
     </style>
-  </head>
-  <body>
-    <ul id="messages"></ul>
-    <form action="">
-      <input id="m" autocomplete="off" /><button>Send</button>
-    </form>
-      <script src="/socket.io/socket.io.js"></script>
+<!--      <script src="/socket.io/socket.io.js"></script>-->
+      <script src="https://cdn.socket.io/socket.io-1.1.0.js"></script>
+
       <script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+      <script src="/static/bower_components/angular/angular.min.js"></script>
+      <script src="/static/bower_components/angular-socket-io/socket.js"></script>
+      <script type="text/javascript" src="/static/js/app.js"></script>
+  </head>
+  <body ng-app="chat">
+    <ul id="messages"></ul>
+    <form ng-submit="send()" ng-controller="chatController">
+      <input id="m" autocomplete="off" ng-model="message" /><button type="submit">Send</button>
+    </form>
+      
+<!--
       <script>
         var socket = io();
           $('form').submit(function() {
@@ -28,5 +35,6 @@
               return false;
           });
       </script>
+-->
   </body>
 </html>
