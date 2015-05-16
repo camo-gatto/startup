@@ -6,14 +6,25 @@ app.factory('socket', function(socketFactory) {
     return socket;
 });
 
-app.controller('chatController', function($scope, socket) {
+app.controller('chatController', function($scope, socket, $interval) {
     $scope.send = function() {
         socket.emit('gatto', $scope.message);
         $scope.message = "";
         return false;
     }
+//    $scope.message = "aaa";
+//    $interval(function() {$scope.send();}, 500);
     socket.on('gatto', function(message) {
         console.debug('socket-client: ', message);
     });
+    
+    socket.on('connect', function() {
+        console.debug("connect ");
+    });
+    
+    socket.on('disconnect', function() {
+        console.debug("disconnect ");
+    });
+    
 
 });
