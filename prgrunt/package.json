@@ -17,6 +17,7 @@
   "devDependencies": {
     "mubsub": "^1.0.4",
     "socket.io-adapter-mongo": "^0.1.4",
-    "sticky-session": "^0.1.0"
+    "sticky-session": "^0.1.0",
+    "sticky-socket-cluster": "0.0.7"
   }
 }

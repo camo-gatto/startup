@@ -5,7 +5,7 @@
     },
     "node": {
         "cluster": {
-            "workers": 1
+            "workers": 3
         }
     }
     

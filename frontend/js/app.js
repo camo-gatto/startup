@@ -2,13 +2,13 @@ var app = angular.module('chat', ['btford.socket-io']);
 
 app.factory('socket', function(socketFactory) {
     var socket = socketFactory();
-//    socket.forward();
+    socket.forward();
     return socket;
 });
 
 app.controller('chatController', function($scope, socket, $interval) {
     $scope.send = function() {
-        socket.emit('gatto', $scope.message);
+        socket.emit('gatto', {message: $scope.message, user: 'localhost'});
         $scope.message = "";
         return false;
     }
