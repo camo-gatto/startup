@@ -2,11 +2,6 @@
     "mongo": {
         "dbpath": "../db/data",
         "mongodpath":"../db/mongodb/bin"
-    },
-    "node": {
-        "cluster": {
-            "workers": 3
-        }
     }
     
 }
