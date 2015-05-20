@@ -8,6 +8,7 @@ var middleware = require('./middleware.js');
 
 app.use('/', middleware);
 app.set('view engine', 'ejs');
+app.set('views', path.resolve('../frontend/views'));
 app.get('/chat', function(req, res) {
     res.sendFile(path.resolve('../frontend/chat.html'));
 });
