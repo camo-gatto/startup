@@ -4,6 +4,9 @@ var path = require('path');
 var cluster = require('cluster');
 var worker = cluster.worker;
 var http = require('http');
+var middleware = require('./middleware.js');
+
+app.use('/', middleware);
 
 app.get('/chat', function(req, res) {
     res.sendFile(path.resolve('../frontend/chat.html'));
