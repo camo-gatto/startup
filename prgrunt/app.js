@@ -7,12 +7,15 @@ var http = require('http');
 var middleware = require('./middleware.js');
 
 app.use('/', middleware);
-
+app.set('view engine', 'ejs');
 app.get('/chat', function(req, res) {
     res.sendFile(path.resolve('../frontend/chat.html'));
 });
-app.use('/static', express.static('../frontend'));
 
+app.get('/ejs', function(req, res) {
+    res.render('pages/index');
+});
+app.use('/static', express.static('../frontend'));
 
 var server = http.createServer(app);
 var io = require('socket.io')(server);

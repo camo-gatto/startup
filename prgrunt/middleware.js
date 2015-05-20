@@ -1,7 +1,8 @@
 var clc = require('cli-color');
 var info = clc.blue;
 var infoBold = clc.blue.bold;
-
+var error = clc.red;
+var errorBold = clc.red.bold;
 
 var express = require('express');
 // get an instance of router
@@ -9,13 +10,12 @@ var router = express.Router();
 
 // route middleware that will happen on every request
 router.use(function(req, res, next) {
-
     // log each request to the console
     console.log(infoBold(req.method), info(req.url));
-
     // continue doing what we were doing and go to the route
     next(); 
 });
+
 
 // home page route (http://localhost:8080)
 router.get('/', function(req, res) {
@@ -31,8 +31,18 @@ router.get('/about', function(req, res, next) {
     res.send('im the about/next page!');
 });
 router.get('/chat', function(req, res, next) {
-    console.log('middleware ' + req.method + ' ' + req.url);
+    console.log(infoBold('Middleware Router:'), info(req.method + ' ' + req.url));
     next();
+});
+
+router.get('/error', function(req, res, next) {
+    next(new Error('Errore!'));
+});
+
+router.use(function(err, req, res, next) {
+    console.log(errorBold('Error Handler'), error(req.method + ' ' + req.url));
+//    res.status(500).send({ error: 'Something blew up!' });
+    res.status(500).render('pages/error500');
 });
 module.exports = router;
     
