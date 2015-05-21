@@ -9,6 +9,9 @@ app.factory('socket', function(socketFactory) {
 app.controller('chatController', function($scope, socket, $interval, $timeout, $element) {
     $scope.messages = [];
     $scope.send = function() {
+        if(angular.isUndefined($scope.message) || $scope.message == null || $scope.message == '') {
+            return;
+        }
         socket.emit('gatto', {message: $scope.message, user: 'localhost', to: window.sessionStorage.getItem('to')});
         $scope.messages.push($scope.message);
         $scope.message = "";
@@ -16,8 +19,6 @@ app.controller('chatController', function($scope, socket, $interval, $timeout, $
             $element.children("#messages").scrollTop($element.children("#messages")[0].scrollHeight);
         });
         
-        
-        return false;
     }
 //    $scope.message = "aaa";
 //    $interval(function() {$scope.send();}, 500);
