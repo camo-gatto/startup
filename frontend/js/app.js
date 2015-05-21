@@ -8,7 +8,7 @@ app.factory('socket', function(socketFactory) {
 
 app.controller('chatController', function($scope, socket, $interval) {
     $scope.send = function() {
-        socket.emit('gatto', {message: $scope.message, user: 'localhost'});
+        socket.emit('gatto', {message: $scope.message, user: 'localhost', to: window.sessionStorage.getItem('to')});
         $scope.message = "";
         return false;
     }
@@ -20,6 +20,10 @@ app.controller('chatController', function($scope, socket, $interval) {
     
     socket.on('connect', function() {
         console.debug("connect ");
+        socket.emit('join', {
+            user: window.sessionStorage.getItem('user'),
+            to: window.sessionStorage.getItem('to')
+        });
     });
     
     socket.on('disconnect', function() {
