@@ -14,7 +14,7 @@ app.get('/chat', function(req, res) {
 });
 
 app.get('/ejs', function(req, res) {
-    res.render('pages/index');
+    res.render('pages/index', {main: '../partials/main'});
 });
 app.use('/static', express.static('../frontend'));
 var clients = {}, numClients = 1;
