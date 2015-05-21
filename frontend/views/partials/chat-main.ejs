@@ -1,6 +1,10 @@
-<div ng-app="chat">
-    <ul id="messages"></ul>
-    <form ng-submit="send()" ng-controller="chatController">
+<div ng-app="chat" ng-controller="chatController">
+    <ul id="messages" class="list-unstyled">
+        <li ng-repeat="m in messages track by $index" class="text-muted">
+            <span class="text-success">localhost:&nbsp;</span>{{m}}
+        </li>
+    </ul>
+    <form ng-submit="send()">
         
         <div class="input-group input-group-lg">
             <input type="text" class="form-control" placeholder="Type a message" aria-describedby="sizing-addon1" ng-model="message">

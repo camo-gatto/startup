@@ -6,10 +6,17 @@ app.factory('socket', function(socketFactory) {
     return socket;
 });
 
-app.controller('chatController', function($scope, socket, $interval) {
+app.controller('chatController', function($scope, socket, $interval, $timeout, $element) {
+    $scope.messages = [];
     $scope.send = function() {
         socket.emit('gatto', {message: $scope.message, user: 'localhost', to: window.sessionStorage.getItem('to')});
+        $scope.messages.push($scope.message);
         $scope.message = "";
+        $timeout(function() {
+            $element.children("#messages").scrollTop($element.children("#messages")[0].scrollHeight);
+        });
+        
+        
         return false;
     }
 //    $scope.message = "aaa";
