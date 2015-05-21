@@ -10,7 +10,8 @@ app.use('/', middleware);
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('../frontend/views'));
 app.get('/chat', function(req, res) {
-    res.sendFile(path.resolve('../frontend/chat.html'));
+//    res.sendFile(path.resolve('../frontend/chat.html'));
+    res.render('pages/index', {main: '../partials/chat-main'});
 });
 
 app.get('/ejs', function(req, res) {

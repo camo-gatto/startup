@@ -1,0 +1,13 @@
+<div ng-app="chat">
+    <ul id="messages"></ul>
+    <form ng-submit="send()" ng-controller="chatController">
+        
+        <div class="input-group input-group-lg">
+            <input type="text" class="form-control" placeholder="Type a message" aria-describedby="sizing-addon1" ng-model="message">
+            <span class="input-group-btn">
+                <button class="btn btn-default" type="submit">Send!</button>
+            </span>
+        </div>
+    </form>
+
+</div>
