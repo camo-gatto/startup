@@ -1,19 +1,17 @@
+Readme
+==================
 
-npm list  
-npm list -g --depth=0
-npm init  
-sudo npm install nome_pacchetto --save  
+npm command  
+-------------
+`npm list`  
+`npm list -g --depth="0"`  
+`npm init`  
+`sudo npm install nome_pacchetto --save`  
 
-install grunt:  
-sudo npm install -g grunt-cli  
-
-mongodb  
-mongo.sh to start server  
-mongoconnect.sh to connect to server
-
-creare progetto node (npm init)  
-installare grunt e aggiungerlo alle dep
-
-sudo npm istall --save grunt  
-
-Node.js Authentication Strategy: passport.js o everyauth
+#####install grunt:  
+`sudo npm install -g grunt-cli`  
+##### install bower
+`sudo npm install -g bower`
+#### download dependencies
+go to prgrunt and  type `npm init`  
+go to frontend and type `bower init`
