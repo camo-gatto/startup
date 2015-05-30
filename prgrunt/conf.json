@@ -2,6 +2,7 @@
     "mongo": {
         "dbpath": "../db/data",
         "mongodpath":"../db/mongodb/bin"
-    }
+    },
+    "isClustered": true
     
 }
