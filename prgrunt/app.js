@@ -5,8 +5,8 @@ var cluster = require('cluster');
 var worker = cluster.worker;
 var http = require('http');
 var middleware = require('./middleware.js');
-if (worker == null) {
-    worker = {id: process.pid}
+if (worker === null) {
+    worker = {id: process.pid};
 }
 app.use('/', middleware);
 app.set('view engine', 'ejs');

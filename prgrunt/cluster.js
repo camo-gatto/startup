@@ -1,7 +1,7 @@
 var clc = require('cli-color');
 var sticky = require('sticky-session');
 var config = require('./conf.json');
-if(typeof config.isClustered == "undefined" || config.isClustered == false) {
+if(typeof config.isClustered === "undefined" || config.isClustered === false) {
     require('./app.js').server.listen(3000, serverListener);
     return;
 }
