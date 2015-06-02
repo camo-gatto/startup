@@ -1,5 +1,6 @@
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.initConfig({
         log: {
             foo: [1, 2, 3]
@@ -38,6 +39,13 @@ module.exports = function(grunt) {
                     return "NODE_DEBUG=cluster node " + cnf.main;
                 }
             }
+        },
+        jshint: {
+            options: {
+                curly: true,
+                eqeqeq: true
+            },
+            backendTarget: ['Gruntfile.js', '*.js']
         }
     });
 
@@ -51,6 +59,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default2', 'Log some stuff.', function() {
         grunt.log.write('Logging some stuff...').ok();
     });
+    grunt.registerTask('linting', ['jshint']);
     
     grunt.registerMultiTask('log', function() {
         //this.data: In a multi task, this is the actual data stored in the Grunt config object for the given target
