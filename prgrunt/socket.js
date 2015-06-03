@@ -1,3 +1,4 @@
+'use strict';
 var cluster = require('cluster');
 var worker = cluster.worker;
 
@@ -6,7 +7,7 @@ if (worker === null) {
 }
 
 var clients = {}, numClients = 1;
-function initSocket(io) {
+module.exports = function (io) {
     io.on('connection', function(socket) {
         clients[numClients] = socket.id;
         numClients = numClients + 1;
@@ -26,7 +27,5 @@ function initSocket(io) {
         });
     });
     
-}
-module.exports = initSocket;
-
+};
 

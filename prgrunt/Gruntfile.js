@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-shell');
     grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -42,8 +43,12 @@ module.exports = function(grunt) {
         },
         jshint: {
             options: {
-                curly: true,
-                eqeqeq: true
+                strict: true,  //This option requires all functions to run in ECMAScript 5's strict mode.
+                curly: true,    //This option requires you to always put curly braces around blocks in loops and conditionals.
+                eqeqeq: true,   //This options prohibits the use of == and != in favor of === and !==.
+                unused: false,  //This option warns when you define and never use your variables.
+                undef: true,    //This option prohibits the use of explicitly undeclared variables
+                node: true  //This option defines globals available when your code is running inside of the Node runtime environment
             },
             backendTarget: ['Gruntfile.js', '*.js']
         }

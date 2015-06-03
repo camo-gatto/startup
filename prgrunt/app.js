@@ -1,3 +1,4 @@
+'use strict';
 var express = require('express');
 var app = express();
 var path = require('path');
@@ -17,7 +18,6 @@ app.get('/ejs', function(req, res) {
     res.render('pages/index', {main: '../partials/main'});
 });
 app.use('/static', express.static('../frontend'));
-var clients = {}, numClients = 1;
 var server = http.createServer(app);
 var io = require('socket.io')(server);
 require('./socket.js')(io);

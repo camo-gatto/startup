@@ -1,3 +1,4 @@
+'use strict';
 var clc = require('cli-color');
 var info = clc.blue;
 var infoBold = clc.blue.bold;
