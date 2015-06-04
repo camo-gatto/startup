@@ -4,7 +4,9 @@
   "description": "",
   "main": "cluster.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+      "start": "node cluster.js",
+      "setup": "npm install && npm list --depth=0 && cd ../frontend/ && bower install && bower list"
   },
   "author": "nic",
   "license": "ISC",

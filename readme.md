@@ -12,6 +12,8 @@ npm command
 `sudo npm install -g grunt-cli`  
 ##### install bower
 `sudo npm install -g bower`
-#### download dependencies
+#### howo to download dependencies
 go to prgrunt and  type `npm init`  
-go to frontend and type `bower init`
+go to frontend and type `bower init`  
+start server with `npm start`  
+to install backend and frontend dependencies go to prgrunt and run: `npm setup`
