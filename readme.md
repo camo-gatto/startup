@@ -16,4 +16,4 @@ npm command
 go to prgrunt and  type `npm init`  
 go to frontend and type `bower init`  
 start server with `npm start`  
-to install backend and frontend dependencies go to prgrunt and run: `npm setup`
+to install backend and frontend dependencies go to prgrunt and run: `npm run setup`
