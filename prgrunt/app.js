@@ -6,7 +6,16 @@ var path = require('path');
 var http = require('http');
 var middleware = require('./middleware.js');
 
+
 var bodyParser = require('body-parser');
+var passport = require('passport');
+require('./mypassport')(passport);
+
+app.use(passport.initialize());
+//app.use(passport.session()); // persistent login sessions
+var mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost/mydb');
+
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', middleware);
@@ -20,14 +29,9 @@ app.get('/chat', function(req, res) {
 app.get('/ejs', function(req, res) {
     res.render('pages/index', {main: '../partials/main'});
 });
-app.get('/login', function(req, res) {
-    res.render('pages/index', {main: '../partials/login'});
-});
-app.post('/login', function(req, res) {
-     /*req.body Contains key-value pairs of data submitted in the request body. By default, it is undefined, and is populated when you use body-parsing middleware such as body-parser and multer.*/
-    console.log('/login', req.body);
-    res.json(req.body);
-});
+
+require('./routes/auth')(app,passport);
+
 app.use('/static', express.static('../frontend'));
 var server = http.createServer(app);
 var io = require('socket.io')(server);
