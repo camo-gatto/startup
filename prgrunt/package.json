@@ -5,7 +5,7 @@
   "main": "cluster.js",
   "scripts": {
     "test": "mocha test",
-    "start": "node cluster.js",
+    "start": "set DEBUG=express:* & node  cluster.js",
     "setup": "npm install && npm list --depth=0 && cd ../frontend/ && bower install && bower list"
   },
   "author": "nic",
