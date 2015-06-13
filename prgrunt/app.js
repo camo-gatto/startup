@@ -1,5 +1,6 @@
 'use strict';
 var express = require('express');
+var cnf = require('./config/conf');
 var app = express();
 var path = require('path');
 
@@ -9,13 +10,12 @@ var middleware = require('./middleware.js');
 
 var bodyParser = require('body-parser');
 var passport = require('passport');
-require('./mypassport')(passport);
+require('./config/passport')(passport);
 
 app.use(passport.initialize());
 //app.use(passport.session()); // persistent login sessions
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mydb');
-
+mongoose.connect(cnf.mongo.dbname);
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({extended: true}));
 app.use('/', middleware);
