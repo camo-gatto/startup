@@ -31,7 +31,7 @@ router.get('/about', function(req, res, next) {
 },function(req, res) {
     res.send('im the about/next page!');
 });
-router.get('/chat', function(req, res, next) {
+router.get('/chat',isLoggedIn, function(req, res, next) {
     console.log(infoBold('Middleware Router:'), info(req.method + ' ' + req.url));
     next();
 });
@@ -45,6 +45,15 @@ router.use(function(err, req, res, next) {
 //    res.status(500).send({ error: 'Something blew up!' });
     res.status(500).render('pages/index', {main: '../partials/error500'});
 });
+
+function isLoggedIn(req,res, next){
+    if(req.isAuthenticated()){
+        return next();
+    }
+    res.redirect('/login');
+}
+
+
 module.exports = router;
     
 

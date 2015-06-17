@@ -9,11 +9,17 @@ var middleware = require('./middleware.js');
 
 
 var bodyParser = require('body-parser');
+var session= require('express-session');
 var passport = require('passport');
 require('./config/passport')(passport);
 
+app.use(session({
+        secret: 'camogatto',
+        resave: true,
+        saveUninitialized:true
+    }));
 app.use(passport.initialize());
-//app.use(passport.session()); // persistent login sessions
+app.use(passport.session()); // persistent login sessions
 var mongoose = require('mongoose');
 mongoose.connect(cnf.mongo.dbname);
 app.use(bodyParser.json()); // support json encoded bodies
