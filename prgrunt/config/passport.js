@@ -13,7 +13,7 @@ module.exports = function(passport) {
         });
     });
     
-    passport.use('local-signup', new LocalStrategy({
+    passport.use('local-register', new LocalStrategy({
         // by default, local strategy uses username and password, we will override with email
         usernameField : 'email',
         passwordField : 'password',
@@ -43,6 +43,11 @@ module.exports = function(passport) {
                 // set the user's local credentials
                 newUser.local.email = email;
                 newUser.local.password = password;//newUser.generateHash(password);
+                newUser.name=req.body.name;
+                newUser.surname=req.body.surname;
+                newUser.born_date=req.body.bornDate;
+                
+                
 
                 // save the user
                 newUser.save(function(err) {

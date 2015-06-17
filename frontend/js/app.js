@@ -12,7 +12,7 @@ app.controller('chatController', function($scope, socket, $interval, $timeout, $
         if(angular.isUndefined($scope.message) || $scope.message == null || $scope.message == '') {
             return;
         }
-        socket.emit('gatto', {message: $scope.message, user: 'localhost', to: window.sessionStorage.getItem('to')});
+        socket.emit('gatto', {message: $scope.message, user: window.sessionStorage.getItem('me'), to: window.sessionStorage.getItem('to')});
         $scope.messages.push($scope.message);
         $scope.message = "";
         $timeout(function() {
@@ -29,7 +29,7 @@ app.controller('chatController', function($scope, socket, $interval, $timeout, $
     socket.on('connect', function() {
         console.debug("connect ");
         socket.emit('join', {
-            user: window.sessionStorage.getItem('user'),
+            user: window.sessionStorage.getItem('me'),
             to: window.sessionStorage.getItem('to')
         });
     });

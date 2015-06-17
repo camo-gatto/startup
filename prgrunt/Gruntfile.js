@@ -56,7 +56,7 @@ module.exports = function(grunt) {
             },
             startDebugger:{
                 command: function(){
-                    var command = newTermInit + "node debugger.js"+ newTermEnd;
+                    var command = newTermInit + "node --debug debugger.js"+ newTermEnd;
                     return command;
                 }
             }  
@@ -121,18 +121,24 @@ module.exports = function(grunt) {
             newTermInit="gnome-terminal --command=\"";
             newTermEnd="\""
             console.log("Debug for Linux");
-             grunt.task.run(['shell:startMongo']);
+            grunt.task.run(['shell:startMongo']);
             grunt.task.run(['shell:startInspector']); 
             grunt.task.run(['shell:startDebugger']);    
         }else if(osx.test(process.platform)){
             newTermInit="";
             newTermEnd="";
             console.log("Debug for OSX");
+            grunt.task.run(['shell:startMongo']);
+            grunt.task.run(['shell:startInspector']); 
+            grunt.task.run(['shell:startDebugger']);    
                         
         }else if(win.test(process.platform)){
             newTermInit="";
             newTermEnd="";
-            console.log("Debug for Windows");    
+            console.log("Debug for Windows");   
+            grunt.task.run(['shell:startMongo']);
+            grunt.task.run(['shell:startInspector']); 
+            grunt.task.run(['shell:startDebugger']);    
 
         }
     

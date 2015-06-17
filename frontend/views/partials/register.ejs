@@ -1,0 +1,42 @@
+<form name="login" action="http://localhost:3000/register" method="post">
+    <h2>Personal information</h2>
+    <div class="row">
+        
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group form-group-lg"><input type="text" name="name"  class="form-control" placeholder="insert name" required></div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group form-group-lg"><input type="text" name="surname" class="form-control" placeholder="insert surname" required></div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group form-group-lg"><input type="date" name="bornDate" class="form-control" step="7" min="1970-01-01" required ></div>
+        </div>
+    </div>
+    <br>
+    <h2>User information</h2>
+    <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group form-group-lg"><input type="email" name="email"  class="form-control" placeholder="insert email" required></div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group form-group-lg"><input type="email" name="confirmEmail" class="form-control" placeholder="confirm email" required></div>
+        </div>
+    </div>
+    <div class="row">
+        
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group form-group-lg"><input type="password" name="password" class="form-control" placeholder="insert password" required></div>
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <div class="form-group form-group-lg"><input type="password" name="confirmPassword" class="form-control" placeholder="confirm password" required></div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <input type="submit" value="Login" class="btn btn-default navbar-btn">
+        </div>
+    </div>
+    
+
+
+</form>

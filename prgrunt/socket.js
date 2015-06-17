@@ -6,11 +6,11 @@ if (worker === null) {
     worker = {id: process.pid};
 }
 
-var clients = {}, numClients = 1;
+var map = {};
+
+
 module.exports = function (io) {
     io.on('connection', function(socket) {
-        clients[numClients] = socket.id;
-        numClients = numClients + 1;
         console.log('connection' + 'S:', socket.id + ' W:' + worker.id);
         socket.on('disconnect', function() {
             console.log("disconnect" + 'S:', socket.id + ' W:' + worker.id);
@@ -18,12 +18,12 @@ module.exports = function (io) {
 
         socket.on('join', function(data) {
             console.log('join ' + data.user + ' ' + data.to);
-            clients[data.user] = socket.id;
+            map[data.user] = {socketId: socket.id};
         });
-        socket.on('gatto', function(message) {
-            console.log('Received on worker ' + worker.id + ' SocketId: ' + socket.id + ' ' + message.user + ': ' +message.message);
+        socket.on('gatto', function(data) {
+            console.log('Received on worker ' + worker.id + ' SocketId: ' + socket.id + ' ' + data.user + ': ' +data.message);
             //io.emit('gatto', message);
-            io.sockets.connected[clients[message.to]].emit('gatto', message);
+            io.sockets.connected[map[data.to].socketId].emit('gatto', data.message);
         });
     });
     
