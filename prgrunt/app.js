@@ -41,6 +41,8 @@ require('./routes/auth')(app,passport);
 app.use('/static', express.static('../frontend'));
 var server = http.createServer(app);
 var io = require('socket.io')(server);
+var redis = require('socket.io-redis');
+io.adapter(redis({ host: cnf.redis.host, port: cnf.redis.port}));
 require('./socket.js')(io);
 
 module.exports = {

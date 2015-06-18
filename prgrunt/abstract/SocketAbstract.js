@@ -27,7 +27,7 @@ SocketIo.prototype.emit = function(event, data) {
 }
 
 SocketIo.prototype.bind = function(event, callback) {
-    this.socket.on('disconnect', function() {
+    this.socket.on(event, function() {
        callback(); 
     });
 }
@@ -40,7 +40,7 @@ ServerSocketIo.prototype.onconnect = function(callback) {
     var that = this;
     this.server.on('connection', function(socket) {
         that.sockets[socket.id] = socket;
-        callback(new SocketIo());
+        callback(new SocketIo(socket));
     });
 }
 ServerSocketIo.prototype.getConnectedSockedById = function(socketId) {
@@ -48,7 +48,7 @@ ServerSocketIo.prototype.getConnectedSockedById = function(socketId) {
 }
 
 
-module.exports.getSocket = function(server) {
+module.exports.getServerSocket = function(server) {
     /**
      * @description resolve dependency
      * @return new ServerSocket

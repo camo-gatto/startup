@@ -23,7 +23,9 @@ module.exports = function (io) {
         socket.on('gatto', function(data) {
             console.log('Received on worker ' + worker.id + ' SocketId: ' + socket.id + ' ' + data.user + ': ' +data.message);
             //io.emit('gatto', message);
-            io.sockets.connected[map[data.to].socketId].emit('gatto', data.message);
+            if(map[data.to] && map[data.to].socketId){
+                io.sockets.connected[map[data.to].socketId].emit('gatto', data.message);
+            }
         });
     });
     
