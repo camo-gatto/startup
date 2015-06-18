@@ -1,13 +1,18 @@
 'use strict';
 var cluster = require('cluster');
 var worker = cluster.worker;
-var cache = require('./abstract/CacheAbstract').getCache();
+var redis = require('redis').createClient();
+
+redis.on('error', function(err) {
+    console.log('Redis error');
+    throw err;
+});
 
 if (worker === null) {
     worker = {id: process.pid};
 }
 
-var map = {};
+//var map = {};
 
 
 module.exports = function (io) {
@@ -19,14 +24,26 @@ module.exports = function (io) {
 
         socket.on('join', function(data) {
             console.log('join ' + data.user + ' ' + data.to);
-            map[data.user] = {socketId: socket.id};
+            //map[data.user] = {socketId: socket.id};
+            redis.set(data.user, socket.id, function(err) {
+                if(err) {
+                    throw err;
+                }
+            });
         });
         socket.on('gatto', function(data) {
             console.log('Received on worker ' + worker.id + ' SocketId: ' + socket.id + ' ' + data.user + ': ' +data.message);
             //io.emit('gatto', message);
-            if(map[data.to] && map[data.to].socketId){
+            /*if(map[data.to] && map[data.to].socketId){
                 io.sockets.connected[map[data.to].socketId].emit('gatto', data.message);
-            }
+            }*/
+            redis.get(data.to, function(err, socketId) {
+                if(err) {
+                    throw err;
+                }else {
+                    io.sockets.connected[socketId].emit('gatto', data.message);    
+                }    
+            });
         });
     });
     
