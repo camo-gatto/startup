@@ -41,8 +41,13 @@ require('./routes/auth')(app,passport);
 app.use('/static', express.static('../frontend'));
 var server = http.createServer(app);
 var io = require('socket.io')(server);
-var redis = require('socket.io-redis');
-io.adapter(redis({ host: cnf.redis.host, port: cnf.redis.port}));
+var redis = require('redis');
+var redisAdapter = require('socket.io-redis');
+
+var pub = redis.createClient(cnf.redis.port, cnf.redis.host, {detect_buffers: true});
+var sub = redis.createClient(cnf.redis.port, cnf.redis.host, {detect_buffers: true});
+
+io.adapter(redisAdapter({pubClient: pub, subClient: sub}));
 require('./socket.js')(io);
 
 module.exports = {
