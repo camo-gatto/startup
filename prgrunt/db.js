@@ -1,6 +1,6 @@
-
+var cnf= require('./config/conf.js');
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/mydb');
+mongoose.connect(cnf.mongo.dbname);
 var User = require('./models/user');
 var gatto = new User ({
   name: 'Michele',
