@@ -1,7 +1,8 @@
 'use strict';
 var cluster = require('cluster');
 var worker = cluster.worker;
-var redis = require('redis').createClient();
+var cnf = require('./config/conf');
+var redis = require('redis').createClient(cnf.redis.port, cnf.redis.host);
 
 redis.on('error', function(err) {
     console.log('Redis error');
