@@ -1,25 +1,57 @@
+/**
+ * pseudoclassical pattern
+ */
 function Socket() {}
 
-Socket.prototype.connect = function(callback) {
-    /**
-     * @implements
-     */
-    throw new Error('method must be implemented');
+Socket.prototype.emit = function() {/** @abstract */}
+Socket.prototype.bind = function() {/** @abstract */}
+
+
+/**
+ *
+ * @costructor SocketIo inherits from Socket
+ */
+function SocketIo(socket) {
+    this.socket = socket;
+}
+SocketIo.prototype = new Socket();
+
+/** 
+ * @implement
+ */
+
+
+
+SocketIo.prototype.emit = function(event, data) {
+    this.socket.emit(event, data);
 }
 
-Socket.prototype.emit = function(event) {
-    /**
-     * @implements
-     */
-    throw new Error('method must be implemented');
+SocketIo.prototype.bind = function(event, callback) {
+    this.socket.on('disconnect', function() {
+       callback(); 
+    });
+}
+
+function ServerSocketIo(server) {
+    this.server = server;
+    this.sockets = {};
+}
+ServerSocketIo.prototype.onconnect = function(callback) {
+    var that = this;
+    this.server.on('connection', function(socket) {
+        that.sockets[socket.id] = socket;
+        callback(new SocketIo());
+    });
+}
+ServerSocketIo.prototype.getConnectedSockedById = function(socketId) {
+    return this.sockets[socketId];
 }
 
 
-Socket.prototype.bind = function(event) {
+module.exports.getSocket = function(server) {
     /**
-     * @implements
+     * @description resolve dependency
+     * @return new ServerSocket
      */
-    throw new Error('method must be implemented');
+    return new ServerSocketIo(server);
 }
-
-module.exports = Socket;
