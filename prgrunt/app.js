@@ -40,7 +40,8 @@ require('./routes/auth')(app,passport);
 
 app.use('/static', express.static('../frontend'));
 var server = http.createServer(app);
-var io = require('socket.io')(server);
+var sio = require('socket.io')(server);
+var io = sio.listen(server);
 var redis = require('redis');
 var redisAdapter = require('socket.io-redis');
 
