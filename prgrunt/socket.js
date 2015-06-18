@@ -43,8 +43,8 @@ module.exports = function (io) {
                     throw err;
                 }else {
                     console.log('sockedId: ', socketId);
-                    if(io.sockets.socket(socketId)) {
-                        io.sockets.socket(socketId).emit('gatto', data.message);    
+                    if(io.sockets.connected[socketId]) {
+                        io.sockets.connected[socketId].emit('gatto', data.message);    
                     }else {
                         console.log('Broadcasting');
                         io.emit('gatto', 'Broadcasting: ' + data.message);
