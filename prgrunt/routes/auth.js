@@ -1,3 +1,4 @@
+var cache = require('../abstract/CacheAbstract').getCache();
 module.exports = function(app, passport) {
     app.get('/login', function(req, res) {
         res.render('pages/index', {main: '../partials/login'});
@@ -18,5 +19,8 @@ module.exports = function(app, passport) {
         failureRedirect : '/error' // redirect back to the signup page if there is an error
         //,failureFlash : true // allow flash messages
     }));
+    function saveSession(req, res, next) {
+        cache.set(req.session.id, req.session);
+    }
 }
     

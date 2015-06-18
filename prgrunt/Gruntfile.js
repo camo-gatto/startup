@@ -105,10 +105,10 @@ module.exports = function(grunt) {
             grunt.task.run(['shell:startMongo']);
             grunt.task.run(['shell:startServer']);            
         }else if(win.test(process.platform)){
-            newTermInit="";
+            newTermInit="start ";
             newTermEnd="";
             console.log("Task for Windows");
-            grunt.task.run(['shell:startMongo']);
+            //grunt.task.run(['shell:startMongo']);
             grunt.task.run(['shell:startServer']);
 
         }

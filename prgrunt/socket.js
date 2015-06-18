@@ -1,6 +1,7 @@
 'use strict';
 var cluster = require('cluster');
 var worker = cluster.worker;
+var cache = require('./abstract/CacheAbstract').getCache();
 
 if (worker === null) {
     worker = {id: process.pid};

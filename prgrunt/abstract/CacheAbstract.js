@@ -13,5 +13,7 @@ LocalCache.prototype.get = function(key, callback) {
 LocalCache.prototype.set = function(key, value, callback) {
     this.map[key] = value;
 }
-
-module.exports = LocalCache;
+var cache = new LocalCache();
+module.exports.getCache = function() {
+    return cache;
+}
