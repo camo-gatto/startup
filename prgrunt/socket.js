@@ -15,7 +15,7 @@ if (worker === null) {
 
 //var map = {};
 
-
+ 
 module.exports = function (io) {
     io.on('connection', function(socket) {
         console.log('connection' + 'S:', socket.id + ' W:' + worker.id);
