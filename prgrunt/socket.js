@@ -42,13 +42,15 @@ module.exports = function (io) {
                 if(err) {
                     throw err;
                 }else {
-                    console.log('sockedId: ', socketId);
-                    if(io.sockets.connected[socketId]) {
-                        io.sockets.connected[socketId].emit('gatto', data.message);    
+                    console.log('to - sockedId: ', socketId);
+                    io.to(socketId).emit('gatto', data.message);    
+                    
+                    /*if(io.sockets.connected[socketId]) {
+                        
                     }else {
                         console.log('Broadcasting');
                         io.emit('gatto', 'Broadcasting: ' + data.message);
-                    }
+                    }*/
                 }    
             });
         });
