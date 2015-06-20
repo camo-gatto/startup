@@ -31,6 +31,7 @@
     "passport": "^0.2.2",
     "passport-local": "^1.0.0",
     "q": "^1.4.1",
+    "redis": "^0.12.1",
     "socket.io-adapter-mongo": "^0.1.4",
     "socket.io-redis": "^0.1.4",
     "sticky-session": "^0.1.0",
