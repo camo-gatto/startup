@@ -29,13 +29,13 @@ module.exports = function(grunt) {
                     return command;
                 }
             },  
-            /*
-            startMongoLinux: {
+            
+            startRedis: {
                 command: function() {
-                    var command = "gnome-terminal --command=\""+cnf.mongo.mongodpath + '/mongod --dbpath ' + cnf.mongo.dbpath+"\"";
+                    var command = newTermInit + 'redis-server' + newTermEnd;
                     return command;
                 }
-            },*/
+            },
             startMongo: {
                 command: function() {
                     var command = newTermInit + cnf.mongo.mongodpath + '/mongod --dbpath ' + cnf.mongo.dbpath + newTermEnd;
@@ -96,12 +96,14 @@ module.exports = function(grunt) {
             newTermInit="gnome-terminal --command=\"";
             newTermEnd="\""
             console.log("Task for Linux");
+            grunt.task.run(['shell:startRedis']);
             grunt.task.run(['shell:startMongo']);
             grunt.task.run(['shell:startServer']);    
         }else if(osx.test(process.platform)){
             newTermInit="";
             newTermEnd="";
             console.log("Task for OSX");
+            //grunt.task.run(['shell:startRedis']);
             grunt.task.run(['shell:startMongo']);
             grunt.task.run(['shell:startServer']);            
         }else if(win.test(process.platform)){
@@ -121,6 +123,7 @@ module.exports = function(grunt) {
             newTermInit="gnome-terminal --command=\"";
             newTermEnd="\""
             console.log("Debug for Linux");
+            grunt.task.run(['shell:startRedis']);
             grunt.task.run(['shell:startMongo']);
             grunt.task.run(['shell:startInspector']); 
             grunt.task.run(['shell:startDebugger']);    
@@ -128,6 +131,7 @@ module.exports = function(grunt) {
             newTermInit="";
             newTermEnd="";
             console.log("Debug for OSX");
+            //grunt.task.run(['shell:startRedis']);
             grunt.task.run(['shell:startMongo']);
             grunt.task.run(['shell:startInspector']); 
             grunt.task.run(['shell:startDebugger']);    
