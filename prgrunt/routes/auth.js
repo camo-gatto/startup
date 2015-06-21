@@ -20,7 +20,7 @@ module.exports = function(app, passport) {
         //,failureFlash : true // allow flash messages
     }));
     function saveSession(req, res, next) {
-        cache.set(req.session.id, req.session);
+        cache.put(req.session.id, req.session);
     }
 }
     

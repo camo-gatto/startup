@@ -20,10 +20,10 @@ app.controller('chatController', function($scope, socket, $interval, $timeout, $
             message:$scope.message
         });
         $scope.message = "";
-        /*
+        
         $timeout(function() {
             $element.children("#messages").scrollTop($element.children("#messages")[0].scrollHeight);
-        });*/
+        });
         
     }
 //    $scope.message = "aaa";

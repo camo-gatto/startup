@@ -1,7 +1,7 @@
 <div ng-app="chat" ng-controller="chatController">
     <ul id="messages" class="list-unstyled">
         <li ng-repeat="m in messages track by $index" class="text-muted">
-            <span ng-model="name" class="text-success">{{m.name}}:&nbsp;</span>{{m.message}}
+            <span class="text-success">{{m.name}}:&nbsp;</span>{{m.message}}
         </li>
     </ul>
     <form ng-submit="send()">
