@@ -18,8 +18,15 @@ angular.module('chat').controller('chatController', function($scope, socket, $in
         });
         
     }
-//    $scope.message = "aaa";
-//    $interval(function() {$scope.send();}, 500);
+    
+    $scope.signout = function() {
+        socket.disconnect();
+    }
+    
+    $scope.signin = function() {
+        socket.connect();    
+    }
+    
     socket.on('gatto', function(message) {
         $scope.messages.push({
             name:window.sessionStorage.getItem('to'),
