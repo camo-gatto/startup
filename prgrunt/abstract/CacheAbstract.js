@@ -1,3 +1,4 @@
+var cnf = require('../config/conf');
 var redis = require('redis').createClient(cnf.redis.port, cnf.redis.host);
 function Cache() {}
 

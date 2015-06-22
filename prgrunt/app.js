@@ -35,6 +35,9 @@ app.get('/chat', function(req, res) {
 app.get('/ejs', function(req, res) {
     res.render('pages/index', {main: '../partials/main'});
 });
+app.get('/postlogin', function(req, res) {
+    res.render('pages/index', {main: '../partials/postlogin'});
+});
 
 require('./routes/auth')(app,passport);
 

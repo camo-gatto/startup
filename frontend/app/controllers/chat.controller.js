@@ -1,12 +1,4 @@
-var app = angular.module('chat', ['btford.socket-io']);
-
-app.factory('socket', function(socketFactory) {
-    var socket = socketFactory();
-    socket.forward();
-    return socket;
-});
-
-app.controller('chatController', function($scope, socket, $interval, $timeout, $element) {
+angular.module('chat').controller('chatController', function($scope, socket, $interval, $timeout, $element) {
     $scope.messages = [];
     $scope.name="";
     $scope.send = function() {
