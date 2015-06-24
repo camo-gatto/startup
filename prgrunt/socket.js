@@ -19,6 +19,10 @@ if (worker === null) {
 module.exports = function (io) {
     io.on('connection', function(socket) {
         console.log('connection' + 'S:', socket.id + ' W:' + worker.id);
+        //console.log("socket req");
+        console.log("*********************************************************************************************");
+        console.log(socket.request.user);
+        console.log("*********************************************************************************************");
         socket.on('disconnect', function() {
             console.log("disconnect" + 'S:', socket.id + ' W:' + worker.id);
         });
