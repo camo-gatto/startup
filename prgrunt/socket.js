@@ -1,64 +1,64 @@
 'use strict';
+/**
+ * @remove
+ * cluster and worker servono solo per i log
+ */
 var cluster = require('cluster');
-var worker = cluster.worker;
-var cnf = require('./config/conf');
-var redis = require('redis').createClient(cnf.redis.port, cnf.redis.host);
+var worker = (cluster.worker !== null) ? cluster.worker : {id: process.pid};
+var cache = require('./abstract/CacheAbstract');
 
-redis.on('error', function(err) {
-    console.log('Redis error');
-    throw err;
-});
+/**
+ * @enum socket event's name
+ */
+var EVENTUSERSCONNECTED = 'users:connected', EVENTONMESSAGE = 'gatto', EVENTSENDMESSAGE = 'gatto', EVENTJOIN = 'join';
 
-if (worker === null) {
-    worker = {id: process.pid};
+/**
+ * @method updateConnectedUsers
+ * @todo test
+ * @desc emit EVENTUSERSCONNECTED to all connected users
+ */
+function updateConnectedUsers(cache, io, socket) {
+  cache.keys(function (keys) {
+    keys.forEach(function (socketId) {
+       if(socketId !== socket.id){
+         io.to(socketId).emit(EVENTUSERSCONNECTED, socket.request.user);
+       }
+    });
+  });
 }
 
-//var map = {};
+/**
+ * @method sendTo
+ * @desc send data to user
+ */
+function sendTo(cache, io, data) {
+  cache.get(data.to, function(socketId) {
+    console.log('to - sockedId: ', socketId);
+    io.to(socketId).emit(EVENTSENDMESSAGE, data.message);
+  });
+}
 
- 
-module.exports = function (io) {
-    io.on('connection', function(socket) {
-        console.log('connection' + 'S:', socket.id + ' W:' + worker.id);
-        //console.log("socket req");
-        console.log("*********************************************************************************************");
-        console.log(socket.request.user);
-        console.log("*********************************************************************************************");
-        socket.on('disconnect', function() {
-            console.log("disconnect" + 'S:', socket.id + ' W:' + worker.id);
-        });
+/** @desc tcpServer is io */
+function socketWebApp(tcpServer) {
+  tcpServer.on('connection', function(socket) {
+      console.log('connection' + 'S:', socket.id + ' W:' + worker.id);
+      console.log("*********************************************************************************************");
+      console.log(socket.request.user);
+      console.log("*********************************************************************************************");
+      socket.on('disconnect', function() {
+          console.log("disconnect" + 'S:', socket.id + ' W:' + worker.id);
+      });
 
-        socket.on('join', function(data) {
-            console.log('join ' + data.user + ' ' + data.to);
-            //map[data.user] = {socketId: socket.id};
-            redis.set(data.user, socket.id, function(err) {
-                if(err) {
-                    throw err;
-                }
-            });
-        });
-        socket.on('gatto', function(data) {
-            console.log('Received on worker ' + worker.id + ' SocketId: ' + socket.id + ' ' + data.user + ': ' +data.message);
-            //io.emit('gatto', message);
-            /*if(map[data.to] && map[data.to].socketId){
-                io.sockets.connected[map[data.to].socketId].emit('gatto', data.message);
-            }*/
-            redis.get(data.to, function(err, socketId) {
-                if(err) {
-                    throw err;
-                }else {
-                    console.log('to - sockedId: ', socketId);
-                    io.to(socketId).emit('gatto', data.message);    
-                    
-                    /*if(io.sockets.connected[socketId]) {
-                        
-                    }else {
-                        console.log('Broadcasting');
-                        io.emit('gatto', 'Broadcasting: ' + data.message);
-                    }*/
-                }    
-            });
-        });
-    });
-    
-};
+      updateConnectedUsers(cache, tcpServer, socket);
+      socket.on(EVENTJOIN, function(data) {
+        /** @desc data {user: string, to: string} */
+          cache.put(data.user, socket.id);
+      });
+      socket.on(EVENTONMESSAGE, function(data) {
+          console.log('Received on worker ' + worker.id + ' SocketId: ' + socket.id + ' ' + data.user + ': ' +data.message);
+          sendTo(cache, tcpServer, data);
+      });
+  });
+}
 
+module.exports = socketWebApp;

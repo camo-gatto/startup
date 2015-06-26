@@ -1,9 +1,10 @@
-var cnf = require('../config/conf');
-var redis = require('redis').createClient(cnf.redis.port, cnf.redis.host);
+/**
+ * @abstract Cache
+ */
 function Cache() {}
-
 Cache.prototype.get = function() {}
 Cache.prototype.put = function() {}
+Cache.prototype.keys = function() {}
 
 function LocalCache() {
     this.map = {};
@@ -15,22 +16,44 @@ LocalCache.prototype.get = function(key, callback) {
 LocalCache.prototype.put = function(key, value, callback) {
     this.map[key] = value;
 }
-
-function RedisCache() {}
+/**
+ * RedisCache implementation
+ */
+function RedisCache() {
+  var cnf = require('../config/conf');
+  this.redis = require('redis').createClient(cnf.redis.port, cnf.redis.host);
+  this.redis.on('error', function (err) {
+      throw err;
+  });
+}
 RedisCache.prototype = new Cache();
 RedisCache.prototype.get = function(key, callback) {
-    redis.get(key, function(err, value) {
-        callback(err, value);
+    this.redis.get(key, function(err, value) {
+      if(err) {
+        throw err;
+      }else {
+        callback(value);
+      }
     });
 }
 RedisCache.prototype.put = function(key, value, callback) {
-    redis.set(key, value, function(err) {
-        callback(err);
+    this.redis.set(key, value, function(err) {
+        if(callback) {
+          callback(err);
+        }
     });
 }
-
-
-var cache = new LocalCache();
-module.exports.getCache = function() {
-    return cache;
+RedisCache.prototype.keys = function(callback) {
+    this.redis.keys(function (err, keys) {
+      if(err) {
+        throw err;
+      }else {
+        callback(keys || []);
+      }
+    });
 }
+/**
+ * @instance RedisCache
+ */
+var cache = new RedisCache();
+module.exports = cache;
