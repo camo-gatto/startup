@@ -14,7 +14,7 @@ var redisStore = require('connect-redis')(session);
 require('./config/passport')(passport);
 
 var client = redis.createClient();
-app.use(session({ 
+app.use(session({
         store: new redisStore({ host: cnf.redis.host, port:cnf.redis.port, client: client }),
         secret: 'camogatto',
         resave: true,
@@ -35,15 +35,15 @@ app.use('/private/api',api.api);
 
 app.set('view engine', 'ejs');
 app.set('views', path.resolve('../frontend/views'));
-app.get('/postlogin/chat', function(req, res) { 
-    
-//    res.sendFile(path.resolve('../frontend/chat.html')); 
+app.get('/postlogin/chat', function(req, res) {
+
+//    res.sendFile(path.resolve('../frontend/chat.html'));
     res.render('pages/index', {main: '../partials/chat-main'});
 });
 
 app.get('/ejs', function(req, res) {
     res.render('pages/index', {main: '../partials/main'});
-}); 
+});
 
 app.get('/postlogin', function(req, res) {
     res.render('pages/index', {main: '../partials/postlogin'});
@@ -58,7 +58,7 @@ var io = require('socket.io')(server);
 var passportSocketIo = require('passport.socketio');
 
 io.use(passportSocketIo.authorize({
-    cookieParser: cookieParser, 
+    cookieParser: cookieParser,
     key: 'connect.sid',
     secret: 'camogatto',
     store:new redisStore({ host: cnf.redis.host, port:cnf.redis.port, client: client }),
@@ -69,7 +69,7 @@ io.use(passportSocketIo.authorize({
         console.log("Passport not autorize"); accept(); },
     success: function(data, accept) {
 
-        console.log("Passport autorize",data); 
+        // console.log("Passport autorize",data); 
         accept(); }
 }));
 

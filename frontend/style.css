@@ -1,0 +1,26 @@
+
+.users-ul {
+  background-color: beige;
+  padding: 10px 10px 10px 0px;
+}
+.user-img {
+  width: 15px;
+  height: 15px;
+  box-shadow: 2px 2px 4px -2px black;
+border-radius: 25px;
+background-color: greenyellow;
+}
+  .users-li {
+    list-style: none;
+    padding: 10px 10px 10px 0px;
+  }
+  body {
+    padding-top: 50px;
+    background-color: #fcfcfc;
+    padding-bottom: 70px;
+  }
+  #messages {
+      overflow: auto;
+      height: 200px;
+      overflow-y: visible;
+  }

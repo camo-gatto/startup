@@ -22,6 +22,7 @@ LocalCache.prototype.put = function(key, value, callback) {
 function RedisCache() {
   var cnf = require('../config/conf');
   this.redis = require('redis').createClient(cnf.redis.port, cnf.redis.host);
+  this.SET = '*';
   this.redis.on('error', function (err) {
       throw err;
   });
@@ -44,7 +45,7 @@ RedisCache.prototype.put = function(key, value, callback) {
     });
 }
 RedisCache.prototype.keys = function(callback) {
-    this.redis.keys(function (err, keys) {
+    this.redis.keys(this.SET, function (err, keys) {
       if(err) {
         throw err;
       }else {

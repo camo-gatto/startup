@@ -2,10 +2,18 @@
 <div ng-app="chat">
 
 
-    <div ui-view></div>
-    <a ui-sref="state1">State 1</a>
-    <a ui-sref="state2">State chat</a>
-    
-    
+  <div class="row">
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+      <div ui-view="users-connected-list"></div>
+    </div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+      <div ui-view="chat"></div>
+    </div>
+  </div>
+
+
+
+
+
 
 </div>

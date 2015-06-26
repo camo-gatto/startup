@@ -14,15 +14,15 @@ var EVENTUSERSCONNECTED = 'users:connected', EVENTONMESSAGE = 'gatto', EVENTSEND
 
 /**
  * @method updateConnectedUsers
- * @todo test
+ * @todo keys contiene tutte le chiavi salvate in cache. recuperare la socket id e lanciare un event: EVENTUSERSCONNECTED
  * @desc emit EVENTUSERSCONNECTED to all connected users
  */
 function updateConnectedUsers(cache, io, socket) {
+  console.log('@method:updateConnectedUsers', socket.request.headers.cookie);
   cache.keys(function (keys) {
-    keys.forEach(function (socketId) {
-       if(socketId !== socket.id){
-         io.to(socketId).emit(EVENTUSERSCONNECTED, socket.request.user);
-       }
+    console.log('@method:updateConnectedUsers:keys', keys);
+    keys.forEach(function (key) {
+        console.log('@method:updateConnectedUsers:KEY', key);
     });
   });
 }
