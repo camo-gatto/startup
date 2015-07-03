@@ -1,7 +1,7 @@
 module.exports = {
     "mongo": {
         "dbpath": "../db/data",
-        "mongodpath":"../db/mongodb/bin",
+        "mongodpath":"../db/mongodb/bin/",
         "dbname":"mongodb://localhost/mydb"
     },
     "redis": {

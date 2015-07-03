@@ -38,7 +38,7 @@ module.exports = function(grunt) {
             },
             startMongo: {
                 command: function() {
-                    var command = newTermInit + cnf.mongo.mongodpath + '/mongod --dbpath ' + cnf.mongo.dbpath + newTermEnd;
+                    var command = newTermInit + cnf.mongo.mongodpath + 'mongod --dbpath ' + cnf.mongo.dbpath + newTermEnd;
                     return command;
                 }
             },
