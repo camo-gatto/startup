@@ -4,3 +4,4 @@ db/mongodb
 frontend/bower_components
 prgrunt/npm-debug.log
 .idea
+/.settings/
