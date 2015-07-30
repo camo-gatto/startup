@@ -21,9 +21,9 @@ module.exports = {
 	},
 	"redis": {
 		"logfile": location.log + "/redis.log",
-		"fileconf":location.application+"/dbs/redis/redis.conf",
-		"pidfile": location.application+"/dbs/redis/data/redis.pid",
-		"storage":location.application+"/dbs/redis/data/",
+		"fileconf":location.application+"/dbs/redisdb/redis.conf",
+		"pidfile": location.application+"/dbs/redisdb/data/redis.pid",
+		"storage":location.application+"/dbs/redisdb/data/",
 		"host": "localhost",
 		"port":6379,
 		"loglevel":"debug" //debug,verbose,notice,warning
