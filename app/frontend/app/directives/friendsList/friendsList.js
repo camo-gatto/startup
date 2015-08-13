@@ -1,33 +1,36 @@
-angular.module('chat').directive('friendsList', friendsList);
+define(['services/socket.service'], function () {
 
-function friendsList() {
-    return {
-        restrict: 'E',
-        template: './friendsList.html',
-        scope: {},
-        controller: function ($scope, socket) {
-            var ONFRIEND = "socket:eventname";
-            /**
-             * todo get the list with HTTP GET METHOD
-             */
-            $scope.friends = [
-                {name: "john", lastname: "sad", profile: "", online: true},
-                {name: "Maya", lastname: "sadsad", profile: "", online: true},
-                {name: "Lisa", lastname: "sad", profile: "", online: false}
-            ];
+    angular.module('chat').directive('friendsList', friendsList);
 
-            socket.on(ONFRIEND, function(friend) {
-                var f = $scope.friends.find(function (element) {
-                    return (element.id === friend.id);
+    function friendsList() {
+        return {
+            restrict: 'E',
+            templateUrl: 'directives/friendsList/friendsList.html',
+            scope: {},
+            controller: function ($scope, socket) {
+                var ONFRIEND = "socket:eventname";
+                /**
+                 * todo get the list with HTTP GET METHOD
+                 */
+                $scope.friends = [
+                    {name: "john", lastname: "sad", profile: "", online: true},
+                    {name: "Maya", lastname: "sadsad", profile: "", online: true},
+                    {name: "Lisa", lastname: "sad", profile: "", online: false}
+                ];
+
+                socket.on(ONFRIEND, function(friend) {
+                    var f = $scope.friends.find(function (element) {
+                        return (element.id === friend.id);
+                    });
+                    if(f.length > 1) {
+                        throw new Error("Users id conflict!");
+                    }
+                    if(angular.isDefined(f)) {
+                        f.online = friend.online;
+                    }
                 });
-                if(f.length > 1) {
-                    throw new Error("Users id conflict!");
-                }
-                if(angular.isDefined(f)) {
-                    f.online = friend.online;
-                }
-            });
 
+            }
         }
     }
-}
+});
