@@ -14,7 +14,8 @@
     "bootstrap": "~3.3.4",
     "angular-socket-io": "~0.7.0",
     "icomoon": "~0.0.3",
-    "angular-ui-router": "~0.2.15"
+    "angular-ui-router": "~0.2.15",
+    "requirejs": "~2.1.20"
   },
   "devDependencies": {
     "jquery": "~2.1.4"
