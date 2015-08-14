@@ -15,7 +15,8 @@
     "angular-socket-io": "~0.7.0",
     "icomoon": "~0.0.3",
     "angular-ui-router": "~0.2.15",
-    "requirejs": "~2.1.20"
+    "requirejs": "~2.1.20",
+    "angular-mocks": "~1.4.4"
   },
   "devDependencies": {
     "jquery": "~2.1.4"

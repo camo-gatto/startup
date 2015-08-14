@@ -5,3 +5,14 @@ frontend/bower_components
 prgrunt/npm-debug.log
 .idea
 /.settings/
+
+
+application/dbs/mongodb/data/local.0
+
+application/dbs/mongodb/data/local.ns
+
+application/dbs/mongodb/data/mongod.lock
+
+application/dbs/mongodb/data/mydb.0
+
+application/dbs/mongodb/data/mydb.ns

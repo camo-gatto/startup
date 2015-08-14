@@ -1,5 +1,10 @@
-friendsList directive
-<div ng-repeat="friend in friends">
-    <div class="avatar"><img ng-src="friend.profile"/></div>
-    <div>{{friend.name}} {{friend.lastname}}</div>
+<div class="friends-list" ng-repeat="friend in friends">
+
+    <div class="row friend" ng-click="select(friend)">
+            <img ng-src="{{friend.profile}}" class="profile" ng-class="{'online': friend.online, 'offline': !friend.online}"/>
+
+            <span>{{friend.name}} {{friend.lastname}}</span>
+
+    </div>
+
 </div>

@@ -1,10 +1,10 @@
-define(['btford.socket-io'], function () {
+define([], function () {
 
-    angular.module('chat').factory('socket', function(socketFactory) {
+    angular.module('chat').factory('socket', ['socketFactory', function(socketFactory) {
         var socket = socketFactory();
         socket.forward();
         return socket;
-    });
+    }]);
 
 
 

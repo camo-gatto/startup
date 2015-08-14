@@ -5,17 +5,23 @@ define(['services/socket.service'], function () {
     function friendsList() {
         return {
             restrict: 'E',
-            templateUrl: 'directives/friendsList/friendsList.html',
+            templateUrl: 'static/app/directives/friendsList/friendsList.html',
             scope: {},
             controller: function ($scope, socket) {
                 var ONFRIEND = "socket:eventname";
+
+                $scope.select = function (friend) {
+                    console.log('friend: ', friend);
+                }
+
                 /**
                  * todo get the list with HTTP GET METHOD
                  */
                 $scope.friends = [
-                    {name: "john", lastname: "sad", profile: "", online: true},
-                    {name: "Maya", lastname: "sadsad", profile: "", online: true},
-                    {name: "Lisa", lastname: "sad", profile: "", online: false}
+                    {name: "john", lastname: "sad", profile: "static/app/resources/friends/128.jpg", online: true},
+                    {name: "Maya", lastname: "sadsad", profile: "static/app/resources/friends/129.jpg", online: false},
+                    {name: "Lisa", lastname: "sad", profile: "static/app/resources/friends/130.jpg", online: false},
+                    {name: "Irwin", lastname: "Mueller", profile: "static/app/resources/friends/131.jpg", online: true}
                 ];
 
                 socket.on(ONFRIEND, function(friend) {
