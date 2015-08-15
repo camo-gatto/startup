@@ -24,6 +24,6 @@ module.exports = function(app, passport) {
         console.log("/logout");
         req.logout();
         res.redirect('/login');
-
+        //res.status(200).json();
     });
 }

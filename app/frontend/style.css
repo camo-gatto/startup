@@ -74,3 +74,9 @@ background-color: greenyellow;
       margin-left: 16px;
       font-size: 16px;
   }
+  .chat-form input.offline {
+      background-color: gainsboro;
+  }
+  .chat-form input.online {
+      background-color: honeydew;
+  }

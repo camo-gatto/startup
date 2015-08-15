@@ -21,7 +21,13 @@ module.exports = function(grunt) {
 						newTermEnd="";
 						initVariable="forever start -a -l" + cnf.node.logfile + " ";
 					}
-					return newTermInit+initVariable + cnf.node.initfile+newTermEnd;
+					console.log(newTermInit+initVariable + cnf.node.initfile+newTermEnd);
+					var dir = '';
+					if(osx.test(process.platform)) {
+						dir = cnf.location.root + 'app/backend/';
+					}
+					console.log(newTermInit + initVariable + dir + cnf.node.initfile + newTermEnd);
+					return newTermInit + initVariable + dir + cnf.node.initfile + newTermEnd;
 
 				}
 			},
@@ -29,7 +35,11 @@ module.exports = function(grunt) {
 				command: function(){
 					var initVariable="";
 					if(cnf.env=='DEV'){
-						return "kill $(ps aux | grep -v grep |grep 'nodemon "+cnf.node.initfile+"' | awk '{print $2}')";
+						var dir = '';
+						if(osx.test(process.platform)) {
+							dir = cnf.location.root + 'app/backend/';
+						}
+						return "kill $(ps aux | grep -v grep |grep 'nodemon " + dir + cnf.node.initfile+"' | awk '{print $2}')";
 					}else if(cnf.env=='INT'){
 						initVariable = "forever stop ";
 					}
@@ -39,7 +49,7 @@ module.exports = function(grunt) {
 			serverShow: {
 				command: function(){
 					if(cnf.env=="DEV"){
-						return "ps aux | grep -v grep |grep '" +cnf.node.initfile+"'";
+						return "ps aux | grep -v grep |grep '" + cnf.node.initfile + "'";
 					}else if(cnf.env=="INT"){
 						return "forever list";
 					}
@@ -53,14 +63,22 @@ module.exports = function(grunt) {
 						newTermEnd="";
 						initVariable ='--fork  --logpath '  + cnf.mongo.logfile;
 					}
-					var command = newTermInit +"mongod --config " + cnf.mongo.fileconf + " --port " + cnf.mongo.port +
+					var mongo = "";
+					if(osx.test(process.platform)) {
+						mongo = cnf.mongo.bin + "/";
+					}
+					var command = newTermInit + mongo + "mongod --config " + cnf.mongo.fileconf + " --port " + cnf.mongo.port +
 					" --dbpath "+ cnf.mongo.storage+" "+ initVariable+newTermEnd;
 					return command;
 				}
 			},
 			mongoStop: {
 				command: function() {
-					var command = "mongod --shutdown --dbpath "+ cnf.mongo.storage;
+					var mongo = "";
+					if(osx.test(process.platform)) {
+						mongo = cnf.mongo.bin + "/";
+					}
+					var command = mongo + "mongod --shutdown --dbpath "+ cnf.mongo.storage;
 					return command;
 				}
 			},
@@ -82,6 +100,7 @@ module.exports = function(grunt) {
 					}
 					var command = newTermInit+"redis-server "+ cnf.redis.fileconf +" --port " + cnf.redis.port + " --loglevel " + cnf.redis.loglevel +
 					" --pidfile "+cnf.redis.pidfile +" --dir "+cnf.redis.storage+" "+initVariable + newTermEnd;
+					console.log(command);
 					return command;
 
 				}
@@ -141,8 +160,9 @@ grunt.registerTask('start', function(){
 		grunt.task.run(['shell:mongoStart']);
 		grunt.task.run(['shell:serverStart']);
 	}else if(osx.test(process.platform)){
-		newTermInit="";
-		newTermEnd="";
+		newTermInit = "osascript -e 'tell app \"Terminal\"' -e 'do script \"";
+		newTermEnd = "\"' -e 'end tell'";
+
 		console.log("Task for OSX");
 		grunt.task.run(['shell:redisStart']);
 		grunt.task.run(['shell:mongoStart']);

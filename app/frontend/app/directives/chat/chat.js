@@ -51,6 +51,7 @@ define(['services/socket.service'], function () {
                 });
 
                 socket.on('connect', function() {
+                    $scope.me.online = true;
                     console.debug("connect ");
                     socket.emit('join', {
                         user: window.sessionStorage.getItem('me'),
@@ -59,6 +60,7 @@ define(['services/socket.service'], function () {
                 });
 
                 socket.on('disconnect', function() {
+                    $scope.me.online = false;
                     console.debug("disconnect ");
                 });
             }

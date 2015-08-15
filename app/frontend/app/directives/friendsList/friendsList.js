@@ -7,7 +7,7 @@ define(['services/socket.service'], function () {
             restrict: 'E',
             templateUrl: 'static/app/directives/friendsList/friendsList.html',
             scope: {},
-            controller: function ($scope, socket) {
+            controller: function ($scope, socket, $http) {
                 var ONFRIEND = "socket:eventname";
 
                 $scope.select = function (friend) {
@@ -17,12 +17,12 @@ define(['services/socket.service'], function () {
                 /**
                  * todo get the list with HTTP GET METHOD
                  */
-                $scope.friends = [
-                    {name: "john", lastname: "sad", profile: "static/app/resources/friends/128.jpg", online: true},
-                    {name: "Maya", lastname: "sadsad", profile: "static/app/resources/friends/129.jpg", online: false},
-                    {name: "Lisa", lastname: "sad", profile: "static/app/resources/friends/130.jpg", online: false},
-                    {name: "Irwin", lastname: "Mueller", profile: "static/app/resources/friends/131.jpg", online: true}
-                ];
+                 $http.get('/private/api/userslist').success(function(data, status, headers, config) {
+                     $scope.friends = data;
+                   }).error(function(data, status, headers, config) {
+                       console.error(data);
+                   });
+
 
                 socket.on(ONFRIEND, function(friend) {
                     var f = $scope.friends.find(function (element) {
