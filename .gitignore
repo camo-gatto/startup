@@ -1,9 +1,5 @@
 /app/backend/node_modules
-/application
-application/dbs/mongodb/data/local.0
-
-application/dbs/mongodb/data/local.ns
-
-application/dbs/mongodb/data/mongod.lock
+/application/mongo
+/application/dbs
 
 app/backend/npm-debug.log
