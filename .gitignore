@@ -1,2 +1,9 @@
+/app/backend/node_modules
+/application
+application/dbs/mongodb/data/local.0
 
-application/dbs/
+application/dbs/mongodb/data/local.ns
+
+application/dbs/mongodb/data/mongod.lock
+
+app/backend/npm-debug.log
