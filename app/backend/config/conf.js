@@ -1,6 +1,7 @@
 var location = {
-	"application": "/devenv/application",
-	"log": "/devenv/logs"
+	"application": "/Users/nicoladesimone/Documents/dev/startup/application",
+	"root": "/Users/nicoladesimone/Documents/dev/startup/",
+	"log": "/Users/nicoladesimone/Documents/dev/startup/logs"
 };
 module.exports = {
 	"env":"DEV", //enviroment value DEV or INT
@@ -18,6 +19,7 @@ module.exports = {
 		"host":"localhost",
 		"storage":location.application+"/dbs/mongodb/data/",
 		"port":27017,
+		"bin": location.application + "/mongo/bin"
 	},
 	"redis": {
 		"logfile": location.log + "/redis.log",
@@ -27,5 +29,6 @@ module.exports = {
 		"host": "localhost",
 		"port":6379,
 		"loglevel":"debug" //debug,verbose,notice,warning
-	}
+	},
+	location: location
 }
