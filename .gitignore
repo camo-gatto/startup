@@ -1,5 +1,5 @@
 /app/backend/node_modules
 /application/mongo
-/application/dbs
-
+/application/dbs/mongodb/data
+/application/dbs/redisdb/data
 app/backend/npm-debug.log
