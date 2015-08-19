@@ -3,7 +3,7 @@ require.config({
         'angular': '../bower_components/angular/angular.min',
         'jquery': '../bower_components/jquery/dist/jquery.min',
         'mod': './mod',
-        'app': './app',
+        'application': './app',
         'directives': './directives',
         'controllers': './controllers',
         'services': './services',
@@ -34,7 +34,7 @@ require.config({
         'ui.router': {
             deps: ['angular']
         },
-        'app': {
+        'application': {
             //These script dependencies should be loaded before loading
             //mod.js
             deps: ['mod', 'angular', 'ui.router', 'btford.socket-io', 'angular-mocks']
@@ -53,7 +53,7 @@ var deps = [
     'mock'
 ];
 
-require(['app', 'io'], function(app, io) {
+require(['application', 'io'], function(app, io) {
     window.io = io;
     require(deps, function () {
         //Manually bootstrap angular

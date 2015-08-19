@@ -1,4 +1,4 @@
-define(['app'], function (app) {
+define(['application'], function (app) {
     app.directive('aGreatEye', function () {
         return {
             restrict: 'E',

@@ -1,4 +1,4 @@
-define(['app', 'mock-conf'], function (app, mockConf) {
+define(['application', 'mock-conf'], function (app, mockConf) {
 
 
     app.run(function ($httpBackend) {
