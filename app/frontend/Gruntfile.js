@@ -74,11 +74,36 @@ module.exports = function(grunt) {
               ]
             }
           }
+      },
+      environment: {
+          dev: 'DEV',
+          int: 'INT',
+          prod: 'PROD'
       }
+
     });
 
     grunt.registerTask('default', function () {
         grunt.log.ok('Ok');
+    });
+
+    grunt.task.registerMultiTask('environment', function () {
+        var envJson = "environment.json";
+        var json = grunt.file.readJSON(envJson);
+        json.environment = this.data;
+        grunt.file.write(envJson, JSON.stringify(json, null, 2));
+        grunt.log.ok('Environment: ' + this.data + ' updated file: ' + envJson);
+
+        var mockJs = "./app/mock/conf.js";
+        var mockConf = grunt.file.read(mockJs);
+        if(this.data === "DEV") {
+            mockConf = mockConf.replace(/false/g, true);
+        }else {
+            mockConf = mockConf.replace(/true/g, false);
+        }
+        grunt.file.write(mockJs, mockConf);
+        grunt.log.ok("Changed mock configuration file: ", mockJs);
+
     });
 
     grunt.registerTask('test', ['karma']);
