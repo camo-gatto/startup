@@ -7,8 +7,8 @@ require.config({
         'directives': './directives',
         'controllers': './controllers',
         'services': './services',
-        'io': '/socket.io/socket.io', //esposto da node
-        //'io': '../bower_components/socket.io-client/socket.io',
+        //'io': '/socket.io/socket.io', //esposto da node
+        'io': '../bower_components/socket.io-client/socket.io', //client only for dev
         'btford.socket-io': '../bower_components/angular-socket-io/socket',
         'ui.router': '../bower_components/angular-ui-router/release/angular-ui-router',
         'routing': './routing',
