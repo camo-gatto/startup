@@ -4,6 +4,8 @@ var path = require('path');
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-express');
+    grunt.loadNpmTasks('grunt-contrib-sass');
+    
 	grunt.initConfig({
         karma: {
           unit: {
@@ -93,6 +95,13 @@ module.exports = function(grunt) {
                  server: path.resolve('proxy.js')
               }
 
+          }
+      },
+      sass: {
+          dist: {
+              files: {
+                  'app/directives/friendsList/friendsList.css': 'app/directives/friendsList/friendsList.scss'
+              }
           }
       }
 

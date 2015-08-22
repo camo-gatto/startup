@@ -5,3 +5,4 @@
 app/backend/npm-debug.log
 /app/frontend/node_modules
 app/frontend/npm-debug.log
+app/frontend/.sass-cache
