@@ -13,9 +13,15 @@ require.config({
         'ui.router': '../bower_components/angular-ui-router/release/angular-ui-router',
         'routing': './routing',
         'angular-mocks': '../bower_components/angular-mocks/angular-mocks',
-        'bootstrap': '../bower_components/bootstrap/dist/js/bootstrap.min',
+        'bootstrap-js': '../bower_components/bootstrap/dist/js/bootstrap.min',
+        'require-css': '../bower_components/require-css/css',
         'mock': './mock/mock',
         'mock-conf': './mock/conf'
+    },
+    map: {
+        '*' : {
+            css: 'require-css'
+        }
     },
     shim: {
         'angular': {
@@ -46,7 +52,8 @@ require.config({
 
 
 var deps = [
-    'bootstrap',
+    'require-css',
+    'bootstrap-js',
     'directives/friendsList/friendsList',
     'directives/chat/chat',
     'routing',

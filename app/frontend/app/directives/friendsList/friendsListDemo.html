@@ -2,14 +2,24 @@
 
     <head>
         <title>friendsList</title>
+        <link rel="stylesheet" href="/static/bower_components/bootstrap/dist/css/bootstrap.min.css">
         <script data-main="/static/app/main.js" src="/static/bower_components/requirejs/require.js"></script>
-
+        <style>
+            body {
+                padding: 50px 50px 50px 50px;
+            }
+        </style>
     </head>
     <body>
-        <h1>demo<h1>
+        <h4>friends-list demo</h4>
             <main>
-                <friends-list></friends-list>
-
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <friends-list></friends-list>
+                        </div>
+                    </div>
+                </div>
             </main>
     </body>
 

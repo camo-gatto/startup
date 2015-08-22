@@ -1,8 +1,6 @@
-define(['services/socket.service'], function () {
+define(['application', 'services/socket.service', 'css!./friendsList.css'], function (application) {
 
-    angular.module('chat').directive('friendsList', friendsList);
-
-    function friendsList() {
+    application.directive('friendsList', function () {
         return {
             restrict: 'E',
             templateUrl: '/static/app/directives/friendsList/friendsList.html',
@@ -38,5 +36,7 @@ define(['services/socket.service'], function () {
 
             }
         }
-    }
+    });
+
+
 });

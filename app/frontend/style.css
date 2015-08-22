@@ -25,38 +25,7 @@ background-color: greenyellow;
       overflow-y: visible;
   }
 
-  .friends-list .friend {
-      margin-bottom: 16px;
-      cursor: pointer;
-  }
 
-  .friends-list .profile {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-  }
-  .friends-list .profile.online {
-      border-style: solid;
-      border-width: 2px;
-      border-color: greenyellow;
-      box-shadow: 1px 1px 10px greenyellow;
-  }
-
-  .friends-list .profile.offline {
-      border-style: solid;
-      border-width: 0px;
-      border-color: red;
-      box-shadow: 1px 1px 10px red;
-  }
-
-
-  .friends-list .friend > span {
-      margin: 16px;
-      font-size: 16px;
-  }
-  .friends-list .friend > span:hover {
-      color: cadetblue;
-  }
 
 
 /**
