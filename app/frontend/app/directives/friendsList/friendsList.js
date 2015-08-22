@@ -5,7 +5,7 @@ define(['services/socket.service'], function () {
     function friendsList() {
         return {
             restrict: 'E',
-            templateUrl: 'static/app/directives/friendsList/friendsList.html',
+            templateUrl: '/static/app/directives/friendsList/friendsList.html',
             scope: {},
             controller: function ($scope, socket, $http) {
                 var ONFRIEND = "socket:eventname";

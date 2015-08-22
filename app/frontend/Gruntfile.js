@@ -1,8 +1,9 @@
 'use strict';
+var path = require('path');
 
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-serve');
+    grunt.loadNpmTasks('grunt-express');
 	grunt.initConfig({
         karma: {
           unit: {
@@ -82,7 +83,16 @@ module.exports = function(grunt) {
       },
       serve: {
           options: {
-              port: 9000
+              port: 9000,
+              path: '/static'
+          }
+      },
+      express: {
+          proxy: {
+              options: {
+                 server: path.resolve('proxy.js')
+              }
+
           }
       }
 
@@ -109,14 +119,14 @@ module.exports = function(grunt) {
         grunt.file.write(mockJs, mockConf);
         grunt.log.ok("Changed mock configuration file: ", mockJs);
         if(this.data === "DEV") {
-            grunt.task.run('serve');
+            grunt.task.run('proxy');
         }
 
     });
 
     grunt.registerTask('test', ['karma']);
 
-
+    grunt.registerTask('proxy', ['express', 'express-keepalive']);
 
 
 
