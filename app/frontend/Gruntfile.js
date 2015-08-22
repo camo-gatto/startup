@@ -2,7 +2,7 @@
 
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-karma');
-
+    grunt.loadNpmTasks('grunt-serve');
 	grunt.initConfig({
         karma: {
           unit: {
@@ -79,6 +79,11 @@ module.exports = function(grunt) {
           dev: 'DEV',
           int: 'INT',
           prod: 'PROD'
+      },
+      serve: {
+          options: {
+              port: 9000
+          }
       }
 
     });
@@ -103,6 +108,9 @@ module.exports = function(grunt) {
         }
         grunt.file.write(mockJs, mockConf);
         grunt.log.ok("Changed mock configuration file: ", mockJs);
+        if(this.data === "DEV") {
+            grunt.task.run('serve');
+        }
 
     });
 
