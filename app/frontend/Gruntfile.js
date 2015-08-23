@@ -5,7 +5,8 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-karma');
     grunt.loadNpmTasks('grunt-express');
     grunt.loadNpmTasks('grunt-contrib-sass');
-    
+    grunt.loadNpmTasks('grunt-contrib-watch');
+
 	grunt.initConfig({
         karma: {
           unit: {
@@ -83,12 +84,6 @@ module.exports = function(grunt) {
           int: 'INT',
           prod: 'PROD'
       },
-      serve: {
-          options: {
-              port: 9000,
-              path: '/static'
-          }
-      },
       express: {
           proxy: {
               options: {
@@ -103,6 +98,13 @@ module.exports = function(grunt) {
                   'app/directives/friendsList/friendsList.css': 'app/directives/friendsList/friendsList.scss'
               }
           }
+      },
+
+      watch: {
+        css: {
+            files: '**/*.scss',
+            tasks: ['sass']
+        }
       }
 
     });
