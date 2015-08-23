@@ -1,0 +1,30 @@
+.chat-message {
+    .profile {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+    }
+    .message {
+        margin-bottom: 16px;
+    }
+    .message > span {
+        margin-left: 16px;
+        font-size: 16px;
+    }
+}
+
+.chat-form {
+    input.offline {
+        //background-color: gainsboro;
+    }
+    input.online {
+        //background-color: honeydew;
+    }
+}
+
+
+#messages {
+    overflow: auto;
+    height: 200px;
+    overflow-y: visible;
+}

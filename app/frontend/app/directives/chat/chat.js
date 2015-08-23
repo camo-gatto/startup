@@ -1,5 +1,5 @@
-define(['services/socket.service'], function () {
-    angular.module('chat').directive('chat', function() {
+define(['application', 'services/socket.service', 'css!./chat.css'], function (application) {
+    application.directive('chat', function() {
         return {
             restrict: 'E',
             templateUrl: 'static/app/directives/chat/chat.html',

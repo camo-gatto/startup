@@ -95,7 +95,8 @@ module.exports = function(grunt) {
       sass: {
           dist: {
               files: {
-                  'app/directives/friendsList/friendsList.css': 'app/directives/friendsList/friendsList.scss'
+                  'app/directives/friendsList/friendsList.css': 'app/directives/friendsList/friendsList.scss',
+                  'app/directives/chat/chat.css': 'app/directives/chat/chat.scss'
               }
           }
       },

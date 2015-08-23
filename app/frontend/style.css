@@ -16,36 +16,7 @@ background-color: greenyellow;
   }
   body {
     padding-top: 50px;
-    background-color: #fcfcfc;
+    /*background-color: #fcfcfc;*/
     padding-bottom: 70px;
   }
-  #messages {
-      overflow: auto;
-      height: 200px;
-      overflow-y: visible;
-  }
-
-
-
-
-/**
- * css chat directive - move to directive dir and use requireJs
- */
-  .chat-message .profile {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-  }
-  .chat-message .message {
-      margin-bottom: 16px;
-  }
-  .chat-message .message > span {
-      margin-left: 16px;
-      font-size: 16px;
-  }
-  .chat-form input.offline {
-      background-color: gainsboro;
-  }
-  .chat-form input.online {
-      background-color: honeydew;
-  }
+  

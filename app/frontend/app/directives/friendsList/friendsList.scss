@@ -40,7 +40,6 @@ abbr {
     height: 313px;
     overflow-x: hidden;
     overflow-y: $scroll-type;
-    box-shadow: 2px 2px 5px rgb(232, 232, 232);
     .h-feed {
         list-style: none;
         padding: 0;
@@ -68,7 +67,7 @@ abbr {
 }
 
 .timeline {
-    max-width: 520px;
+    //max-width: 520px;
     margin-bottom: 10px;
     background-color: rgb(255, 255, 255);
     border-radius: 5px;
