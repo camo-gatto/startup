@@ -4,12 +4,15 @@ define(['application', 'services/socket.service', 'css!./friendsList.css'], func
         return {
             restrict: 'E',
             templateUrl: '/static/app/directives/friendsList/friendsList.html',
-            scope: {},
+            scope: {
+                ngModel: '='
+            },
             controller: function ($scope, socket, $http) {
                 var ONFRIEND = "socket:eventname";
 
                 $scope.select = function (friend) {
                     console.log('friend: ', friend);
+                    $scope.ngModel = friend;
                 }
 
                 /**

@@ -1,4 +1,4 @@
-<div class="friends-list" ng-repeat="friend in friends">
+<!-- <div class="friends-list" ng-repeat="friend in friends">
 
     <div class="row friend" ng-click="select(friend)">
             <img ng-src="{{friend.profile}}" class="profile" ng-class="{'online': friend.online, 'offline': !friend.online}"/>
@@ -7,4 +7,45 @@
 
     </div>
 
+</div> -->
+<div class="root timeline customisable-border">
+    <div class="stream">
+    <ol class="h-feed">
+        <li ng-repeat="friend in friends" class="friend customisable-border" ng-click="select(friend)">
+
+            <div class="header">
+
+                <a class="time customisable-highlight" href="https://twitter.com/GrandCanyonNPS/status/635342783247572992" data-datetime="2015-08-23T06:48:18+0000" data-scribe="element:mini_timestamp">
+                    <time pubdate="" class="dt-updated" datetime="2015-08-23T06:48:18+0000" title="Time posted: 23 Aug 2015, 06:48:18 (UTC)" aria-label="Posted 3 hours ago">
+                        3<abbr title="hours">h</abbr>
+                    </time>
+                </a>
+                <div class="h-card p-author">
+                    <a class="profile" href="https://twitter.com/GrandCanyonNPS">
+                        <img class="u-photo avatar" alt="" ng-src="{{friend.profile}}">
+                        <span class="full-name">
+
+                            <span class="p-name customisable-highlight">{{friend.name}} {{friend.surname}}</span>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <span class="verified" title="Verified Account" aria-label="Verified Account" data-scribe="element:verified_badge">
+                                <b>✔</b>
+                            </span>
+                        </span>
+                        <span class="p-nickname" dir="ltr" data-scribe="element:screen_name">@<b>GrandCanyonNPS</b></span>
+
+                    </a>
+                </div>
+
+
+            </div>
+
+            <div class="e-entry-content">
+                <p class="entry-title">Les forêts du globe malades du réchauffement climatique</p>
+            </div>
+            <div class="footer"></div>
+        </li>
+    </ol>
+
+
+    </div>
 </div>
