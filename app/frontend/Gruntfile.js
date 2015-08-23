@@ -3,7 +3,6 @@ var path = require('path');
 
 module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-karma');
-    grunt.loadNpmTasks('grunt-express');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-watch');
 
@@ -84,14 +83,7 @@ module.exports = function(grunt) {
           int: 'INT',
           prod: 'PROD'
       },
-      express: {
-          proxy: {
-              options: {
-                 server: path.resolve('proxy.js')
-              }
 
-          }
-      },
       sass: {
           dist: {
               files: {
@@ -138,8 +130,14 @@ module.exports = function(grunt) {
 
     grunt.registerTask('test', ['karma']);
 
-    grunt.registerTask('proxy', ['express', 'express-keepalive']);
-
+    grunt.registerTask('proxy', function () {
+        var done = this.async();
+        grunt.util.spawn({
+            cmd: 'node',
+            args: ['proxy.js'],
+            opts: {stdio: 'inherit'}
+        });
+    });
 
 
 };

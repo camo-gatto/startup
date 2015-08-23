@@ -2,7 +2,7 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
     application.directive('chat', function() {
         return {
             restrict: 'E',
-            templateUrl: 'static/app/directives/chat/chat.html',
+            templateUrl: '/static/app/directives/chat/chat.html',
             scope: {
             },
             controller: function ($scope, socket, $interval, $timeout, $element) {
@@ -12,7 +12,7 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
                 $scope.me = {
                     name: "john",
                     lastname: "sad",
-                    profile: "static/app/resources/friends/128.jpg",
+                    profile: "/static/app/resources/friends/128.jpg",
                     online: true
                 }
 
