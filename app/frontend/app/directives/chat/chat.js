@@ -1,4 +1,9 @@
 define(['application', 'services/socket.service', 'css!./chat.css'], function (application) {
+
+    /**
+     * @todo ng-repeat animation: http://www.nganimate.org/angularjs/ng-repeat/move
+     */
+
     application.directive('chat', function() {
         return {
             restrict: 'E',
@@ -7,7 +12,6 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
             },
             controller: function ($scope, socket, $interval, $timeout, $element) {
                 $scope.messages = [];
-                $scope.name = "";
 
                 $scope.me = {
                     name: "john",
@@ -15,23 +19,24 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
                     profile: "/static/app/resources/friends/128.jpg",
                     online: true
                 }
-
+                function scroll() {
+                    $timeout(function() {
+                        angular.element("#messages").scrollTop($element.children("#messages")[0].scrollHeight);
+                    });
+                }
                 $scope.send = function() {
                     if(angular.isUndefined($scope.message) || $scope.message == null || $scope.message == '') {
                         return;
                     }
+
                     socket.emit('gatto', {message: $scope.message, user: window.sessionStorage.getItem('me'), to: window.sessionStorage.getItem('to')});
-                    $scope.name = window.sessionStorage.getItem('me');
+
                     $scope.messages.push({
-                        name: window.sessionStorage.getItem('me'),
+                        name: $scope.me.name,
                         message: $scope.message
                     });
                     $scope.message = "";
-
-                    $timeout(function() {
-                        angular.element("#messages").scrollTop($element.children("#messages")[0].scrollHeight);
-                    });
-
+                    scroll();
                 }
 
                 $scope.signout = function() {
@@ -43,11 +48,9 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
                 }
 
                 socket.on('gatto', function(message) {
-                    $scope.messages.push({
-                        name:window.sessionStorage.getItem('to'),
-                        message:message
-                    });
-                    console.debug('socket-client: ', message);
+                    $scope.messages.push(message);
+                    scroll();
+                    console.log('socket-client: ', message);
                 });
 
                 socket.on('connect', function() {

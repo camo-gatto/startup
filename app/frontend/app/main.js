@@ -53,7 +53,7 @@ require.config({
 
 var deps = [
     'require-css',
-    'bootstrap-js',
+    //'bootstrap-js',
     'directives/friendsList/friendsList',
     'directives/chat/chat',
     'routing',

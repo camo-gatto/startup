@@ -2,7 +2,8 @@
     .profile {
         width: 30px;
         height: 30px;
-        border-radius: 50%;
+        background: rgb(255, 255, 255);
+        border-radius: 4px;
     }
     .message {
         margin-bottom: 16px;
@@ -25,6 +26,6 @@
 
 #messages {
     overflow: auto;
-    height: 200px;
+    height: 300px;
     overflow-y: visible;
 }

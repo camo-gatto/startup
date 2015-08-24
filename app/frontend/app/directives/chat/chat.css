@@ -1,7 +1,8 @@
 .chat-message .profile {
   width: 30px;
   height: 30px;
-  border-radius: 50%; }
+  background: white;
+  border-radius: 4px; }
 .chat-message .message {
   margin-bottom: 16px; }
 .chat-message .message > span {
@@ -10,7 +11,7 @@
 
 #messages {
   overflow: auto;
-  height: 200px;
+  height: 300px;
   overflow-y: visible; }
 
 /*# sourceMappingURL=chat.css.map */

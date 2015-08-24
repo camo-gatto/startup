@@ -7,7 +7,10 @@ var io = require('socket.io')(http);
 io.on('connection', function(socket) {
     socket.on('gatto', function(msg){
         console.log('message: ' + msg);
-        io.emit('gatto', { name: 'everyone' , message: 'hello :-)'});
+        setTimeout(function () {
+            io.emit('gatto', { name: 'everyone' , message: 'mock :-)'});
+        }, 1500);
+
     });
 });
 
