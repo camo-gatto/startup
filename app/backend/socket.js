@@ -49,7 +49,8 @@ function socketWebApp(tcpServer) {
 
       socket.on(EVENTJOIN, function(data) {
         /** @desc data {user: string, to: string} */
-          var user=new User(socket.request.user.name, socket.request.user.surname, socket.id)
+          var user=new User(socket.request.user, socket.id)
+          console.log(user);
           cache.put(CONNECTEDUSER + socket.id, JSON.stringify(user));
           updateConnectedUsers(tcpServer, socket);
       });
