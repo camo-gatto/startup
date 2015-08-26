@@ -13,27 +13,23 @@ var User = require('./models/userData');
  */
 var EVENTUSERSCONNECTED = 'users:connected', EVENTONMESSAGE = 'gatto', EVENTSENDMESSAGE = 'gatto', EVENTJOIN = 'join', CONNECTEDUSER = 'connected-user:';
 
-/**
- * @method updateConnectedUsers
- * @todo keys contiene tutte le chiavi salvate in cache. recuperare la socket id e lanciare un event: EVENTUSERSCONNECTED
- * @desc emit EVENTUSERSCONNECTED to all connected users
- */
-function updateConnectedUsers(io, socket) {
-  socket.broadcast.emit(EVENTUSERSCONNECTED, socket.request.user);
-
-}
 
 /**
  * @method sendTo
  * @desc send data to user
  */
-function sendTo(cache, io, data) {
+function sendTo(cache, io, data,socketid) {
   // cache.get(data.to, function(socketId) {
   //   console.log('to - sockedId: ', socketId);
   //   io.to(socketId).emit(EVENTSENDMESSAGE, data.message);
   // });
   console.log('to - sockedId: ', data.to);
-  io.to(data.to).emit(EVENTSENDMESSAGE, data.message);
+  var response={
+    name:data.user.name,
+    message:data.message,
+    socket:socketid
+  };
+  io.to(data.to).emit(EVENTSENDMESSAGE, response);
 }
 
 /** @desc tcpServer is io */
@@ -54,11 +50,11 @@ function socketWebApp(tcpServer) {
           var user=new User(socket.request.user, socket.id)
           console.log(user);
           cache.put(CONNECTEDUSER + socket.id, JSON.stringify(user));
-          updateConnectedUsers(tcpServer, socket);
+          socket.broadcast.emit(EVENTUSERSCONNECTED, user);
       });
       socket.on(EVENTONMESSAGE, function(data) {
           console.log('Received on worker ' + worker.id + ' SocketId: ' + socket.id + ' ' + data.user + ': ' +data.message);
-          sendTo(cache, tcpServer, data);
+          sendTo(cache, tcpServer, data,socket.id);
       });
   });
 }

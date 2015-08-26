@@ -8,7 +8,7 @@ define(['application', 'services/socket.service', 'css!./friendsList.css'], func
                 ngModel: '='
             },
             controller: function ($scope, socket, $http) {
-                var ONFRIEND = "socket:eventname";
+                var ONFRIEND = "users:connected";
 
                 $scope.select = function (friend) {
                     console.log('friend: ', friend);
@@ -26,6 +26,8 @@ define(['application', 'services/socket.service', 'css!./friendsList.css'], func
 
 
                 socket.on(ONFRIEND, function(friend) {
+                    $scope.friends.push(friend);
+                    /*
                     var f = $scope.friends.find(function (element) {
                         return (element.id === friend.id);
                     });
@@ -35,6 +37,7 @@ define(['application', 'services/socket.service', 'css!./friendsList.css'], func
                     if(angular.isDefined(f)) {
                         f.online = friend.online;
                     }
+                    */
                 });
 
             }
