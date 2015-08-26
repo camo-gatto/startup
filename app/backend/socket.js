@@ -28,10 +28,12 @@ function updateConnectedUsers(io, socket) {
  * @desc send data to user
  */
 function sendTo(cache, io, data) {
-  cache.get(data.to, function(socketId) {
-    console.log('to - sockedId: ', socketId);
-    io.to(socketId).emit(EVENTSENDMESSAGE, data.message);
-  });
+  // cache.get(data.to, function(socketId) {
+  //   console.log('to - sockedId: ', socketId);
+  //   io.to(socketId).emit(EVENTSENDMESSAGE, data.message);
+  // });
+  console.log('to - sockedId: ', data.to);
+  io.to(data.to).emit(EVENTSENDMESSAGE, data.message);
 }
 
 /** @desc tcpServer is io */

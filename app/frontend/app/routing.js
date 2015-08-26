@@ -8,10 +8,10 @@ define([], function () {
         views: {
             'users-connected-list@' : {
                 templateUrl: 'static/views/partials/state1.html',
-            },
-            'chat@': {
-                template: '<chat></chat>'
-            }
+            // },
+            // 'chat@': {
+            //     template: '<chat user="user"></chat>'
+             }
 
         }
       })

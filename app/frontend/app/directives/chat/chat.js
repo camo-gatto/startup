@@ -9,9 +9,15 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
             restrict: 'E',
             templateUrl: '/static/app/directives/chat/chat.html',
             scope: {
+                user: '='
             },
             controller: function ($scope, socket, $interval, $timeout, $element) {
                 $scope.messages = [];
+
+
+                $scope.$watch('user', function (user) {
+                    console.log('user', user);
+                });
 
                 $scope.me = {
                     name: "john",
@@ -29,7 +35,11 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
                         return;
                     }
 
-                    socket.emit('gatto', {message: $scope.message, user: window.sessionStorage.getItem('me'), to: window.sessionStorage.getItem('to')});
+                    socket.emit('gatto', {
+                        message: $scope.message,
+                        user: $scope.me,
+                        to: $scope.user.socket
+                    });
 
                     $scope.messages.push({
                         name: $scope.me.name,

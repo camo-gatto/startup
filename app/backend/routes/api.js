@@ -81,6 +81,7 @@ apiRouter.get('/connectedUser',function(req,res,next){
     User.findOne({_id :  req.session.passport.user },function(err, user) {
         if(err){
             console.log(err);
+            res.status(404).end();
         }
         var userJson={
             name: user.name,
