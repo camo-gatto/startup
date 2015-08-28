@@ -15,8 +15,11 @@ background-color: greenyellow;
     padding: 10px 10px 10px 0px;
   }
   body {
-    padding-top: 50px;
+    /*padding-top: 50px;*/
     /*background-color: #fcfcfc;*/
-    padding-bottom: 70px;
+    /*padding-bottom: 70px;*/
   }
-  
+
+  footer {
+      padding-top: 50px
+  }
