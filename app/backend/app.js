@@ -17,8 +17,7 @@ app.use(session(
     store: require('./arch/redisArch').redisStore,
     secret: cnf.session.secret,
     resave: true,
-    rolling:true,
-    cookie: { secure: true },
+    cookie:  {maxAge: cnf.session.expiration},
     saveUninitialized:true
   }
 ));

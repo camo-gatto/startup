@@ -35,7 +35,8 @@ module.exports = {
 		"loglevel":"debug" //debug,verbose,notice,warning
 	},
 	"session": {
-		"secret": "camogatto"
+		"secret": "camogatto",
+		"expiration": 5184000
 	},
 	location: location
 }
