@@ -1,4 +1,5 @@
-module.exports = function(app, passport) {
+module.exports = function(app,passport) {
+
     app.get('/login', function(req, res) {
         console.log("On login route");
         res.render('pages/index', {main: '../partials/login'});

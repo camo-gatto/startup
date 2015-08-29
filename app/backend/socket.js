@@ -5,7 +5,7 @@
  */
 var cluster = require('cluster');
 var worker = (cluster.worker !== null) ? cluster.worker : {id: process.pid};
-var cache = require('./abstract/CacheAbstract');
+var cache = require('./arch/abstract/CacheAbstract');
 var User = require('./models/userData');
 
 /**
@@ -33,8 +33,10 @@ function sendTo(cache, io, data,socketid) {
 }
 
 /** @desc tcpServer is io */
-function socketWebApp(tcpServer) {
-  tcpServer.on('connection', function(socket) {
+function socketWebApp(server) {
+  console.log('start io -----------///');
+  var io = require('./arch/socketIoArch')(server);
+  io.on('connection', function(socket) {
       console.log('connection' + 'S:', socket.id + ' W:' + worker.id);
       console.log("*********************************************************************************************");
       console.log(socket.request.user);
@@ -54,7 +56,7 @@ function socketWebApp(tcpServer) {
       });
       socket.on(EVENTONMESSAGE, function(data) {
           console.log('Received on worker ' + worker.id + ' SocketId: ' + socket.id + ' ' + data.user + ': ' +data.message);
-          sendTo(cache, tcpServer, data,socket.id);
+          sendTo(cache, io, data,socket.id);
       });
   });
 }

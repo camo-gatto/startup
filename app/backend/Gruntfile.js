@@ -184,8 +184,8 @@ grunt.registerTask('startDebug', function(){
 		newTermInit="gnome-terminal --command=\"";
 		newTermEnd="\""
 		console.log("Debug for Linux");
-		grunt.task.run(['shell:redisStart']);
-		grunt.task.run(['shell:mongoStart']);
+		//grunt.task.run(['shell:redisStart']);
+		//grunt.task.run(['shell:mongoStart']);
 		grunt.task.run(['shell:inspector']);
 		grunt.task.run(['shell:debugger']);
 	}else if(osx.test(process.platform)){

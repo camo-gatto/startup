@@ -41,6 +41,7 @@ router.get('/error', function(req, res, next) {
 });
 
 router.use(function(err, req, res, next) {
+    console.log(err);
     console.log(errorBold('Error Handler'), error(req.method + ' ' + req.url));
 //    res.status(500).send({ error: 'Something blew up!' });
     res.status(500).render('pages/index', {main: '../partials/error500'});

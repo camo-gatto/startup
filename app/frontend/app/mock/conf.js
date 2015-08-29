@@ -1,5 +1,5 @@
 define([], function () {
     return {
-        mockenabled: true
+        mockenabled: false
     }
 });

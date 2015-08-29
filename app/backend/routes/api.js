@@ -1,6 +1,6 @@
 var apiRouter= require('express').Router();
 var User = require('../models/user');
-var cache = require('../abstract/CacheAbstract');
+var cache = require('../arch/abstract/CacheAbstract');
 
 apiRouter.get('/prova',function(req,res,next){
     console.log("Prova riuscita");

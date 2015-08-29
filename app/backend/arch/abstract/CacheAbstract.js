@@ -20,8 +20,8 @@ LocalCache.prototype.put = function(key, value, callback) {
  * RedisCache implementation
  */
 function RedisCache() {
-  var cnf = require('../config/conf');
-  this.redis = require('redis').createClient(cnf.redis.port, cnf.redis.host);
+  var cnf = require('../../config/conf');
+  this.redis = require('../redisArch').client;
   this.SET = '*';
   this.redis.on('error', function (err) {
       throw err;

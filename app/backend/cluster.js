@@ -19,3 +19,13 @@ sticky(function() {
 function serverListener() {
     console.log(clc.green('server started on port '+config.node.port+', PID: ' + process.pid));
 }
+
+process.on('SIGINT', function () {
+    console.log("Server shutdown manually");
+    process.exit();
+});
+
+process.on('uncaughtException',function () {
+  console.log("Server shutdown for error");
+  process.exit();
+});
