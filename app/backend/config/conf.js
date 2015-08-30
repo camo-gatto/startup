@@ -1,7 +1,7 @@
 var location = {
-	"application": "/devenv/startup/application",
-	"root": "/devenv/startup/",
-	"log": "/devenv/startup/logs"
+	"application": "/Users/nicoladesimone/Documents/dev/startup/application",
+	"root": "/Users/nicoladesimone/Documents/dev/startup/",
+	"log": "/Users/nicoladesimone/Documents/dev/startup/logs"
 };
 module.exports = {
 	"env":"DEV", //enviroment value DEV or INT
