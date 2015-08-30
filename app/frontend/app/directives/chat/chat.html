@@ -7,10 +7,7 @@
 
 
 <form ng-submit="send()" class="chat-form">
-    <div class="input-group input-group-lg">
-        <input type="text" class="form-control" ng-class="{'online': me.online, 'offline': !me.online}" placeholder="Type a message" aria-describedby="sizing-addon1" ng-model="message">
-        <span class="input-group-btn">
-            <button class="btn btn-default" type="submit">Send!</button>
-        </span>
+    <div class="form-group input-group-lg">
+        <input ng-disabled="!user" type="text" class="form-control" ng-class="{'online': me.online, 'offline': !me.online}" placeholder="Type a message" aria-describedby="sizing-addon1" ng-model="message">
     </div>
 </form>
