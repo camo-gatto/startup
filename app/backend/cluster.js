@@ -20,12 +20,20 @@ function serverListener() {
     console.log(clc.green('server started on port '+config.node.port+', PID: ' + process.pid));
 }
 
+function cleanCache() {
+    var cache = require('./arch/abstract/CacheAbstract');
+    cache.removeKeys('connected-user*').then(function () {
+        process.kill();
+    });
+}
+
+
 process.on('SIGINT', function () {
-    console.log("Server shutdown manually");
-    process.exit();
+    console.log("Server shutdown manually - cleaning redis cache.");
+    cleanCache();
 });
 
 process.on('uncaughtException',function () {
-  console.log("Server shutdown for error");
-  process.exit();
+  console.log("Server shutdown for error - cleaning redis cache.");
+  cleanCache();
 });

@@ -37,7 +37,8 @@ RedisCache.prototype.get = function(key, callback) {
       }
     });
 }
-RedisCache.prototype.values = function(keys,callback) {
+//Returns the values of all specified keys
+RedisCache.prototype.values = function(keys, callback) {
     this.redis.mget(keys, function (err, values) {
       if(err) {
         throw err;
@@ -66,6 +67,30 @@ RedisCache.prototype.keys = function(callback) {
 RedisCache.prototype.remove = function(key) {
     this.redis.del(key);
 }
+/**
+ * remove all keys matches the pattern
+ */
+RedisCache.prototype.removeKeys = function(pattern) {
+    var Q = require('q');
+    var deferred = Q.defer();
+    console.log('RedisCache.prototype.removeKeys');
+    var self = this;
+    this.redis.keys(pattern, function (err, keys) {
+      if(err) {
+          deferred.reject();
+          throw err;
+      }else {
+          console.log('removeKeys - ', keys);
+          keys.forEach(function (key) {
+              console.log('deleting - ', key);
+              self.redis.del(key);
+          });
+          deferred.resolve();
+      }
+    });
+    return deferred.promise;
+}
+
 /**
  * @instance RedisCache
  */
