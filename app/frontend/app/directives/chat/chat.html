@@ -8,6 +8,6 @@
 
 <form ng-submit="send()" class="chat-form">
     <div class="form-group input-group-lg">
-        <input ng-disabled="!user" type="text" class="form-control" ng-class="{'online': me.online, 'offline': !me.online}" placeholder="Type a message" aria-describedby="sizing-addon1" ng-model="message">
+        <input ng-disabled="!user" type="text" class="form-control chat-input" ng-class="{'online': me.online, 'offline': !me.online}" placeholder="Type a message" aria-describedby="sizing-addon1" ng-model="message">
     </div>
 </form>
