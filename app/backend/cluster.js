@@ -20,20 +20,20 @@ function serverListener() {
     console.log(clc.green('server started on port '+config.node.port+', PID: ' + process.pid));
 }
 
-function cleanCache() {
-    var cache = require('./arch/abstract/CacheAbstract');
-    cache.removeKeys('connected-user*').then(function () {
-        process.kill();
-    });
-}
 
 
 process.on('SIGINT', function () {
-    console.log("Server shutdown manually - cleaning redis cache.");
-    cleanCache();
-});
+    console.log(clc.red.bold.underline("Soft shutdown PID:  " + process.pid));
+    var cache = require('./arch/abstract/CacheAbstract');
+    var cluster = require('cluster');
+    if(cluster.isMaster) {
+        cache.removeKeys('connected-user*', function () {
+            console.log(clc.red.bold('CLEANING REDIS CACHE PID:  ' + process.pid));
+            process.kill(0);
 
-process.on('uncaughtException',function () {
-  console.log("Server shutdown for error - cleaning redis cache.");
-  cleanCache();
+        });
+
+    }
+
+
 });

@@ -70,14 +70,10 @@ RedisCache.prototype.remove = function(key) {
 /**
  * remove all keys matches the pattern
  */
-RedisCache.prototype.removeKeys = function(pattern) {
-    var Q = require('q');
-    var deferred = Q.defer();
-    console.log('RedisCache.prototype.removeKeys');
+RedisCache.prototype.removeKeys = function(pattern, callback) {
     var self = this;
     this.redis.keys(pattern, function (err, keys) {
       if(err) {
-          deferred.reject();
           throw err;
       }else {
           console.log('removeKeys - ', keys);
@@ -85,10 +81,9 @@ RedisCache.prototype.removeKeys = function(pattern) {
               console.log('deleting - ', key);
               self.redis.del(key);
           });
-          deferred.resolve();
       }
+      callback();
     });
-    return deferred.promise;
 }
 
 /**

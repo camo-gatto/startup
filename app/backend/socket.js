@@ -37,7 +37,7 @@ function socketWebApp(server) {
   console.log('start io -----------///');
   var io = require('./arch/socketIoArch')(server);
   io.on('connection', function(socket) {
-      console.log('connection' + 'S:', socket.id + ' W:' + worker.id);
+      console.log('connection ' + 'socket:', socket.id + ' worker: ' + worker.id + ' PID: ' + process.pid);
       console.log("*********************************************************************************************");
       console.log(socket.request.user);
       console.log("*********************************************************************************************");

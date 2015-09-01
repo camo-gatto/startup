@@ -6,7 +6,7 @@
   "scripts": {
     "test": "mocha test",
     "mongo": "grunt shell:startMongo",
-    "start": "set DEBUG=express:* & node  cluster.js",
+    "start": "NODE_DEBUG=cluster node  cluster.js",
     "setup": "npm install && npm list --depth=0 && cd ../frontend/ && bower install && bower list"
   },
   "author": "nic",
