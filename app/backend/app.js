@@ -23,7 +23,13 @@ app.use(session(
 ));
 
 var mongoose = require('mongoose');
-mongoose.connect("mongodb://"+cnf.mongo.host+":"+cnf.mongo.port+"/"+cnf.mongo.dbname);
+var mongoOptions = {
+  user: cnf.mongo.user,
+  pass: cnf.mongo.password
+}
+
+var mongoUri="mongodb://"+cnf.mongo.host+":"+cnf.mongo.port+"/"+cnf.mongo.dbname;
+mongoose.connect(mongoUri, mongoOptions);
 
 
 app.use(cookieParser());

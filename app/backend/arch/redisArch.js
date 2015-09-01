@@ -5,8 +5,8 @@ var redis =require("redis");
 var redisAdapter = require('socket.io-redis');
 
 var adapter = redisAdapter({
-  pubClient: redis.createClient(cnf.redis.port,cnf.redis.host,{no_ready_check: true}),
-  subClient: redis.createClient(cnf.redis.port,cnf.redis.host, {detect_buffers: true, no_ready_check: true}),
+  pubClient: redis.createClient(cnf.redis.port,cnf.redis.host,{auth_pass:cnf.redis.password, no_ready_check: true}),
+  subClient: redis.createClient(cnf.redis.port,cnf.redis.host, {auth_pass:cnf.redis.password, detect_buffers: true, no_ready_check: true}),
 })
 
 /**
@@ -14,8 +14,9 @@ var adapter = redisAdapter({
   redisStore: create a redis store used in socketIoArch and in app
   adapter: export a redisAdapter used in socketIoArch
 **/
+var client = redis.createClient(cnf.redis.port,cnf.redis.host, {auth_pass:cnf.redis.password, no_ready_check: true});
 module.exports = {
-    client: redis.createClient(cnf.redis.port,cnf.redis.host, {no_ready_check: true}),
-    redisStore: new redisStore({host: cnf.redis.host, port:cnf.redis.port, client: redis.createClient(cnf.redis.port,cnf.redis.host, {no_ready_check: true})}),
+    client: client,
+    redisStore: new redisStore({host: cnf.redis.host, port:cnf.redis.port, client: client}),
     adapter: adapter
 }

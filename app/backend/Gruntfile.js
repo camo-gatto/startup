@@ -67,7 +67,7 @@ module.exports = function(grunt) {
 					if(osx.test(process.platform)) {
 						mongo = cnf.mongo.bin + "/";
 					}
-					var command = newTermInit + mongo + "mongod --config " + cnf.mongo.fileconf + " --port " + cnf.mongo.port +
+					var command = newTermInit + mongo + "mongod --auth --config " + cnf.mongo.fileconf + " --port " + cnf.mongo.port +
 					" --dbpath "+ cnf.mongo.storage+" "+ initVariable+newTermEnd;
 					return command;
 				}
