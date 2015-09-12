@@ -1,17 +1,37 @@
 .chat-message .profile {
-  width: 30px;
-  height: 30px;
-  background: white;
+  width: 40px;
+  height: 40px;
+  background-color: honeydew;
   border-radius: 4px; }
+.chat-message .profile-right {
+  float: right;
+  background-color: beige; }
 .chat-message .message {
   margin-bottom: 16px; }
 .chat-message .message > span {
   margin-left: 16px;
   font-size: 16px; }
+.chat-message .message-text-rcv {
+  background-color: honeydew;
+  border-radius: 6px;
+  padding: 15px 15px 15px 15px;
+  font-size: medium;
+  font-weight: 400;
+  display: inline-block;
+  float: left; }
+.chat-message .message-text-send {
+  background-color: beige;
+  text-align: right;
+  border-radius: 6px;
+  padding: 15px 15px 15px 15px;
+  font-size: medium;
+  font-weight: 400;
+  display: inline-block;
+  float: right; }
 
 #messages {
   overflow: auto;
-  height: 300px;
+  height: 400px;
   overflow-y: visible; }
 
 /*# sourceMappingURL=chat.css.map */

@@ -47,7 +47,8 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
 
                     $scope.messages.push({
                         name: $scope.me.name,
-                        message: $scope.message
+                        message: $scope.message,
+                        isSend: true
                     });
                     $scope.message = "";
                     scroll();
@@ -63,6 +64,7 @@ define(['application', 'services/socket.service', 'css!./chat.css'], function (a
 
                 socket.on('gatto', function(message) {
                     $scope.socket=message.socket;
+                    message.isSend = false;
                     $scope.messages.push(message);
                     scroll();
                     console.log('socket-client: ', message);

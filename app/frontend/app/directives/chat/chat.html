@@ -1,13 +1,31 @@
-<ul id="messages" class="list-unstyled chat-message">
-    <li ng-repeat="m in messages track by $index" class="text-muted message">
-        <img ng-src="{{me.profile}}" class="profile"/>
-        <span>{{m.name}}:&nbsp; {{m.message}}</span>
-    </li>
-</ul>
+<div class="row chat-message" id="messages">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="row message" ng-repeat="m in messages track by $index">
+            <div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" ng-class="{'col-md-push-11': m.isSend}">
+                <div class="profile" ng-class="{'profile-right': m.isSend}">
+                    <img ng-src="{{me.profile}}"/>
+                </div>
+            </div>
+            <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11" ng-class="{'col-md-pull-1': m.isSend}">
+                <div class="ci"></div>
+                <div ng-class="{'message-text-send': m.isSend, 'message-text-rcv': !m.isSend}">{{m.message}}</div>
+            </div>
+
+        </div>
 
 
-<form ng-submit="send()" class="chat-form">
-    <div class="form-group input-group-lg">
-        <input ng-disabled="!user" type="text" class="form-control chat-input" ng-class="{'online': me.online, 'offline': !me.online}" placeholder="Type a message" aria-describedby="sizing-addon1" ng-model="message">
+
     </div>
-</form>
+
+</div>
+
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <form ng-submit="send()" class="chat-form">
+            <div class="form-group input-group-lg">
+                <input ng-disabled="!user" type="text" class="form-control chat-input" ng-class="{'online': me.online, 'offline': !me.online}" placeholder="Type a message" aria-describedby="sizing-addon1" ng-model="message">
+            </div>
+        </form>
+    </div>
+
+</div>
