@@ -1,6 +1,7 @@
 require.config({
     paths: {
         'angular': '../bower_components/angular/angular.min',
+        'angular-animate': '../bower_components/angular-animate/angular-animate.min',
         'jquery': '../bower_components/jquery/dist/jquery.min',
         'mod': './mod',
         'application': './app',
@@ -31,6 +32,9 @@ require.config({
         'mock': {
             deps: ['angular-mocks']
         },
+        'angular-animate': {
+            deps: ['angular']
+        },
         'angular-mocks': {
             deps: ['angular']
         },
@@ -43,7 +47,7 @@ require.config({
         'application': {
             //These script dependencies should be loaded before loading
             //mod.js
-            deps: ['mod', 'angular', 'ui.router', 'btford.socket-io', 'angular-mocks']
+            deps: ['mod', 'angular', 'ui.router', 'btford.socket-io', 'angular-mocks', 'angular-animate']
         }
      }
 });
